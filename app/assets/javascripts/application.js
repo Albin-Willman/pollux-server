@@ -18,3 +18,7 @@
 function sayHello(){
   alert('Hello');
 }
+
+function showAndroidToast(toast) {
+        Android.showToast(toast);
+}
