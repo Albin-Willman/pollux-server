@@ -26,3 +26,7 @@ function showAndroidToast(toast) {
 function changeElementText() {
    document.getElementsByTagName("h1")[0].innerHTML = "Paragraph changed.";
 }
+
+function addImgSrc(src){
+	document.getElementsByTagName('img')[0].src = src;
+}
