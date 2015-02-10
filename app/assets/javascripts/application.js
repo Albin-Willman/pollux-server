@@ -24,5 +24,5 @@ function showAndroidToast(toast) {
 }
 
 function changeElementText() {
-   document.getElementsByTagName("h1").innerHTML = "Paragraph changed.";
+   document.getElementsByTagName("h1")[0].innerHTML = "Paragraph changed.";
 }
