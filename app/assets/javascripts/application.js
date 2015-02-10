@@ -20,5 +20,9 @@ function sayHello(){
 }
 
 function showAndroidToast(toast) {
-        Android.showToast(toast);
+    Android.showToast(toast);
+}
+
+function changeElementText() {
+   document.getElementsByTagName("h1").innerHTML = "Paragraph changed.";
 }
