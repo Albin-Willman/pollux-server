@@ -33,3 +33,7 @@ function addImgSrc(src){
 function addImgBase64(base64){
 	document.getElementsByTagName("img")[0].src="data:image/jpeg;base64," + base64;
 }
+function processFloat(floatNumber){
+	var f = parseFloat(floatNumber);
+	document.getElementById("floatNumber").value=f;
+}

@@ -5,6 +5,7 @@
 <ul>
   <li>sayHello();</li>
 </ul>
-<img alt="hej jag e en bild">
+<img src="" alt="hej jag e en bild">
 <input type="button" value="Say hello to android" onClick="showAndroidToast('Hello Android!')" />
+<p id="floatNumber"></p>
 <% end %>
