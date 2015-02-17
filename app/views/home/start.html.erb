@@ -1,13 +1,15 @@
 <% content_for :content do %>
 <h1>Welcome to pollux start page</h1>
 <h2>JS methods</h2>
-<h3>Deploy Sucess</h3>
 <ul>
-  <li>sayHello();</li>
+  <li>addImgBase64();</li>
+  <li>showAndroidToast();</li>
 </ul>
-<img src="" alt="hej jag e en bild">
+
+<img src="">
 <input type="button" value="Say hello to android" onClick="showAndroidToast('Hello Android!')" />
-<form action="" method="get">
+<input type="button" value="Upload image" onClick="requstImage()" />
+<!-- <form action="" method="get">
 	<input id="floatNumber" type="number" step="any">
-</form>
+</form> -->
 <% end %>

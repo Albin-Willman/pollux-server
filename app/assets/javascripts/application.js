@@ -15,25 +15,35 @@
 //= require_tree .
 
 
-function sayHello(){
-  alert('Hello');
-}
+
 
 function showAndroidToast(toast) {
     Android.showToast(toast);
 }
 
-function changeElementText() {
-   document.getElementsByTagName("h1")[0].innerHTML = "Paragraph changed.";
+function requstImage(){
+	Android.requstImage();
 }
 
-function addImgSrc(src){
-	document.getElementsByTagName('img')[0].src = src;
-}
 function addImgBase64(base64){
 	document.getElementsByTagName("img")[0].src="data:image/jpeg;base64," + base64;
 }
-function processFloat(floatNumber){
-	var f = parseFloat(floatNumber);
-	document.getElementById("floatNumber").value=f;
-}
+
+// function sayHello(){
+//   alert('Hello');
+// }
+
+// function changeElementText() {
+//    document.getElementsByTagName("h1")[0].innerHTML = "Paragraph changed.";
+// }
+
+// function addImgSrc(src){
+// 	document.getElementsByTagName('img')[0].src = src;
+// }
+
+
+
+// function processFloat(floatNumber){
+// 	var f = parseFloat(floatNumber);
+// 	document.getElementById("floatNumber").value=f;
+// }
