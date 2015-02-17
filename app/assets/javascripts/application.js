@@ -22,7 +22,7 @@ function showAndroidToast(toast) {
 }
 
 function requestImage(){
-	Android.requstImage();
+	Android.requestImage();
 }
 
 function addImgBase64(base64){
