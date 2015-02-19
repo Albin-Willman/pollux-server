@@ -14,36 +14,60 @@
 //= require jquery_ujs
 //= require_tree .
 
+var device = PolluxDevice().device;
+device.showToast('Hello native toaster!'); // Will show toast on both Android, iOS and Web
+// device.showDeviceInfo();
 
+var PolluxDevice = function() {
+  this.device = null;
+  if (typeof Android !== 'undefined') {
+    console.log('Running on a native Android device.');
+    device = TbAndroidAdapter;
+  } else {
+    console.log('Not running on native device.');
+    device = TbWebInterface;
+  }
+}; 	
 
+var TbWebInterface = function() {
+  this.webToast = function(msg) {
+    alert(msg);
+  };
 
-function showAndroidToast(toast) {
-    Android.showToast(toast);
+  this.requestImage = function(){
+  	alert("Not supported yet");
+  };
+  this.showDeviceInfo = function(){
+  	alert("Not supported yet");
+  };
+
+};
+
+var TbAndroidAdapter = function() {
+  this.client = Android;
+
+  this.showToast = function(msg) {
+    client.showToast(msg);
+  };
+
+  this.requestImage = function(){
+  	client.requestImage();
+  };
+
+  this.showDeviceInfo = function(){
+  	var deviceInfo = client.showDeviceInfo();
+
+  }
+};
+
+function showToast(toast) {
+    device.showToast(toast);
 }
 
 function requestImage(){
-	Android.requestImage();
+	device.requestImage();
 }
 
 function addImgBase64(base64){
 	document.getElementsByTagName("img")[0].src="data:image/jpeg;base64," + base64;
 }
-
-// function sayHello(){
-//   alert('Hello');
-// }
-
-// function changeElementText() {
-//    document.getElementsByTagName("h1")[0].innerHTML = "Paragraph changed.";
-// }
-
-// function addImgSrc(src){
-// 	document.getElementsByTagName('img')[0].src = src;
-// }
-
-
-
-// function processFloat(floatNumber){
-// 	var f = parseFloat(floatNumber);
-// 	document.getElementById("floatNumber").value=f;
-// }
