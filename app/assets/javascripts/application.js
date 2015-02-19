@@ -21,10 +21,10 @@ var PolluxDevice = function() {
   this.device = null;
   if (typeof Android !== 'undefined') {
     console.log('Running on a native Android device.');
-    device = TbAndroidAdapter;
+    return TbAndroidAdapter;
   } else {
     console.log('Not running on native device.');
-    device = TbWebInterface;
+    return TbWebInterface;
   }
 };
 
@@ -51,7 +51,7 @@ function showToast(toast) {
     device.showToast(toast);
 } 	
 
-var device = PolluxDevice().device;
+var device = PolluxDevice();
 device.showToast('Hello native toaster!'); // Will show toast on both Android, iOS and Web
 // device.showDeviceInfo();
 
