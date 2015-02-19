@@ -32,16 +32,21 @@ var deviceInfoUnformated;
 function getDeviceInfo(){
   	deviceInfoUnformated = Android.getDeviceInfo();
   	console.log('Unformated:'  + deviceInfoUnformated);
-  	console.log(deviceInfoUnformated.camera);
-  	// var deviceInfo = JSON.parse(deviceInfoUnformated);
-  	// console.log(deviceInfo);
-  	// appendChild();
+  	var deviceInfo = JSON.parse(deviceInfoUnformated);
+  	console.log(deviceInfo);
+	
+	for (var key in deviceInfo) {
+	  if (deviceInfo.hasOwnProperty(key)) {
+	    var val = deviceInfo[key];
+	    appendChild(key, val);
+	  }
+	}
  }
 
- function appendChild(){
+ function appendChild(infoType, value){
  	var deviceList = document.getElementById("deviceInfoList");
   	var listElement = document.createElement('li');
-  	listElement.appendChild(document.createTextNode("Lyckades lagga till ett element med text"));
+  	listElement.appendChild(document.createTextNode(infoType + ': ' + value));
   	deviceList.appendChild(listElement);
  }
 
