@@ -1,23 +1,20 @@
 <% content_for :content do %>
-<h1>Welcome to pollux start page</h1>
-<h2>JS methods</h2>
-<ul>
-  <li>addImgBase64(); this function is called from native android</li>
-  <li>showAndroidToast(String);</li>
-  <li>requestImage();</li>
-</ul>
+  <h1>Welcome to pollux start page</h1>
+  <h2>JS methods</h2>
+  <ul>
+    <li>addImgBase64(); this function is called from native android</li>
+    <li>showAndroidToast(String);</li>
+    <li>requestImage();</li>
+  </ul>
 
-<h2>Device info</h2>
-<ul id="deviceInfoList">
-	
-</ul>
+  <h2>Device info</h2>
+  <ul id="deviceInfoList">
 
-<img src="">
-<input type="button" value="Say hello" onClick="showToast('Hello Android!')" />
-<input type="button" value="Request image" onClick="requestImage()" />
-<input type="button" value="Get device info" onClick="getDeviceInfo()" />	
-<input type="button" value="Append child" onClick="appendChild()" />	
-<!-- <form action="" method="get">
-	<input id="floatNumber" type="number" step="any">
-</form> -->
+  </ul>
+
+  <img src="">
+  <input type="button" value="Say hello"       id="js-toaster" />
+  <input type="button" value="Request image"   id="js-request-image" />
+  <input type="button" value="Get device info" id="js-device-info" />
 <% end %>
+

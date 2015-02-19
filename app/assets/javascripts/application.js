@@ -14,38 +14,45 @@
 //= require jquery_ujs
 //= require_tree .
 
+$(document).ready(function() {
+  $('#js-toaster').on('click', function(e) {
+    e.preventDefault();
+    PolluxDevice.showToast("Hello world! I'm a web client");
+  });
 
-function showToast(toast) {
-    Android.showToast(toast);
-} 
+  $('#js-request-image').on('click', function(e) {
+    e.preventDefault();
+    PolluxDevice.requestImage();
+  });
 
-function requestImage(){
-	Android.requestImage();
+  $('#js-device-info').on('click', function(e) {
+    e.preventDefault();
+    getDeviceInfo();
+  });
+});
+
+function addImgBase64(base64) {
+  document.getElementsByTagName('img')[0].src = Pollux.base64StringToImgSrc(base64);
 }
 
-function addImgBase64(base64){
-	document.getElementsByTagName("img")[0].src="data:image/jpeg;base64," + base64;
+function getDeviceInfo() {
+  var deviceInfoUnformated = PolluxDevice.showDeviceInfo();
+  var deviceInfo = JSON.parse(deviceInfoUnformated);
+
+  console.log('Unformated: '  + deviceInfoUnformated);
+  console.log(deviceInfo);
+
+  var createListElement = function(infoType, value) {
+    var deviceList  = document.getElementById('deviceInfoList');
+    var listElement = document.createElement('li');
+    listElement.appendChild(document.createTextNode(infoType + ': ' + value));
+    deviceList.appendChild(listElement);
+  }
+
+  for (var key in deviceInfo) {
+    if (deviceInfo.hasOwnProperty(key)) {
+      var val = deviceInfo[key];
+      createListElement(key, val);
+    }
+  }
 }
-
-var deviceInfoUnformated;
-
-function getDeviceInfo(){
-  	deviceInfoUnformated = Android.getDeviceInfo();
-  	console.log('Unformated:'  + deviceInfoUnformated);
-  	var deviceInfo = JSON.parse(deviceInfoUnformated);
-  	console.log(deviceInfo);
-	
-	for (var key in deviceInfo) {
-	  if (deviceInfo.hasOwnProperty(key)) {
-	    var val = deviceInfo[key];
-	    appendChild(key, val);
-	  }
-	}
- }
-
- function appendChild(infoType, value){
- 	var deviceList = document.getElementById("deviceInfoList");
-  	var listElement = document.createElement('li');
-  	listElement.appendChild(document.createTextNode(infoType + ': ' + value));
-  	deviceList.appendChild(listElement);
- }
