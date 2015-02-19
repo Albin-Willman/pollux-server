@@ -36,7 +36,7 @@ function getDeviceInfo(){
  }
 
  function appendChild(){
- 	var deviceList = document.getElementsById("deviceInfoList");
+ 	var deviceList = document.getElementById("deviceInfoList");
   	var listElement = document.createElement('li');
   	listElement.appendChild(document.createTextNode("Lyckades lagga till ett element med text"));
   	deviceList.appendChild(listElement);
