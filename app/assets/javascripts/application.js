@@ -27,11 +27,14 @@ function addImgBase64(base64){
 	document.getElementsByTagName("img")[0].src="data:image/jpeg;base64," + base64;
 }
 
+var deviceInfoUnformated;
+
 function getDeviceInfo(){
-  	var deviceInfoUnformated = Android.getDeviceInfo();
+  	deviceInfoUnformated = Android.getDeviceInfo();
   	console.log('Unformated:'  + deviceInfoUnformated);
-  	var deviceInfo = JSON.parse(deviceInfoUnformated);
-  	console.log(deviceInfo);
+  	console.log(deviceInfoUnformated.camera);
+  	// var deviceInfo = JSON.parse(deviceInfoUnformated);
+  	// console.log(deviceInfo);
   	// appendChild();
  }
 
