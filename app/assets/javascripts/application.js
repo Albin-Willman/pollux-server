@@ -28,7 +28,7 @@ function addImgBase64(base64){
 }
 
 function getDeviceInfo(){
-  	var deviceInfoUnformated = Android.showDeviceInfo();
+  	var deviceInfoUnformated = Android.getDeviceInfo();
   	console.log(deviceInfoUnformated);
   	var deviceInfo = JSON.parse(deviceInfoUnformated);
   	console.log(deviceInfo);
