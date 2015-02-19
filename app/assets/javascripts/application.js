@@ -30,9 +30,9 @@ function addImgBase64(base64){
 function getDeviceInfo(){
   	var deviceInfoUnformated = Android.showDeviceInfo();
   	console.log(deviceInfoUnformated);
-  	// var deviceInfo = JSON.parse(deviceInfoUnformated);
-  	// console.log(deviceInfo);
-  	appendChild();
+  	var deviceInfo = JSON.parse(deviceInfoUnformated);
+  	console.log(deviceInfo);
+  	// appendChild();
  }
 
  function appendChild(){
