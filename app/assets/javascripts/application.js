@@ -14,9 +14,8 @@
 //= require jquery_ujs
 //= require_tree .
 
-var device = PolluxDevice().device;
-device.showToast('Hello native toaster!'); // Will show toast on both Android, iOS and Web
-// device.showDeviceInfo();
+
+
 
 var PolluxDevice = function() {
   this.device = null;
@@ -27,21 +26,8 @@ var PolluxDevice = function() {
     console.log('Not running on native device.');
     device = TbWebInterface;
   }
-}; 	
-
-var TbWebInterface = function() {
-  this.webToast = function(msg) {
-    alert(msg);
-  };
-
-  this.requestImage = function(){
-  	alert("Not supported yet");
-  };
-  this.showDeviceInfo = function(){
-  	alert("Not supported yet");
-  };
-
 };
+
 
 var TbAndroidAdapter = function() {
   this.client = Android;
@@ -60,9 +46,31 @@ var TbAndroidAdapter = function() {
   }
 };
 
+
 function showToast(toast) {
     device.showToast(toast);
-}
+} 	
+
+var device = PolluxDevice().device;
+device.showToast('Hello native toaster!'); // Will show toast on both Android, iOS and Web
+// device.showDeviceInfo();
+
+
+var TbWebInterface = function() {
+  this.webToast = function(msg) {
+    alert(msg);
+  };
+
+  this.requestImage = function(){
+  	alert("Not supported yet");
+  };
+  this.showDeviceInfo = function(){
+  	alert("Not supported yet");
+  };
+
+};
+
+
 
 function requestImage(){
 	device.requestImage();
