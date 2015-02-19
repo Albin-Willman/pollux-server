@@ -32,6 +32,14 @@ function getDeviceInfo(){
   	console.log(deviceInfoUnformated);
   	// var deviceInfo = JSON.parse(deviceInfoUnformated);
   	// console.log(deviceInfo);
+  	appendChild();
+ }
+
+ function appendChild(){
+ 	var deviceList = document.getElementsById("deviceInfoList");
+  	var listElement = document.createElement('li');
+  	listElement.appendChild(document.createTextNode("Lyckades lagga till ett element med text"));
+  	deviceList.appendChild(listElement);
  }
 
 
