@@ -52,6 +52,7 @@ function mockGetDeviceInfo() {
 }
 
 function foundBluetoothDevices(foundBluetoothDevice){
+	console.log(foundBluetoothDevice);
 	var bluetoothDevice = JSON.parse(foundBluetoothDevice);
 
 	for (var key in bluetoothDevice) {
