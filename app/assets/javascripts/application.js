@@ -35,33 +35,50 @@ $(document).ready(function() {
     // PolluxDevice.discoverBluetoothDevices();
     Android.discoverBluetoothDevices();
   });
+  $('#js-bluetooth-paired').on('click', function(e) {
+    e.preventDefault();
+    // PolluxDevice.discoverBluetoothDevices();
+    Android.getPairedBluetoothDevices();
+  });
 });
+
+function showPairedBluetoothDevices(pairedBluetoothDevices){
+	var pairedDevices = JSON.parse(pairedBluetoothDevices);
+  addJSONToList(pairedDevices, "bluetoothPairedList");
+}
 
 
 function mockGetDeviceInfo() {
-	console.log('From mockGetDeviceInfo android is: '      + Android);
-  var deviceInfoUnformated = Android.getDeviceInfo();
-  var deviceInfo = JSON.parse(deviceInfoUnformated);
-
-  for (var key in deviceInfo) {
-    if (deviceInfo.hasOwnProperty(key)) {
-      var val = deviceInfo[key];
-      createListElement(key, val, "deviceInfoList");
-    }
-  }
+  var deviceInfo = JSON.parse(Android.getDeviceInfo());
+  addJSONToList(deviceInfo, "deviceInfoList");
+  // for (var key in deviceInfo) {
+  //   if (deviceInfo.hasOwnProperty(key)) {
+  //     var val = deviceInfo[key];
+  //     createListElement(key, val, "deviceInfoList");
+  //   }
+  // }
 }
 
 function foundBluetoothDevices(foundBluetoothDevice){
-	console.log(foundBluetoothDevice);
 	var bluetoothDevice = JSON.parse(foundBluetoothDevice);
-
-	for (var key in bluetoothDevice) {
-    if (bluetoothDevice.hasOwnProperty(key)) {
-      var val = bluetoothDevice[key];
-      createListElement(key, val, "bluetoothDeviceList");
-    }
-  }
+	addJSONToList(bluetoothDevice, "bluetoothDeviceList");
+	// for (var key in bluetoothDevice) {
+ //    if (bluetoothDevice.hasOwnProperty(key)) {
+ //      var val = bluetoothDevice[key];
+ //      createListElement(key, val, "bluetoothDeviceList");
+ //    }
+ //  }
 }
+
+function addJSONToList(aJSON, id){
+	for (var key in aJSON) {
+    if (aJSON.hasOwnProperty(key)) {
+      var val = aJSON[key];
+      createListElement(key, val, id);
+    }
+  }	
+}
+
 
 function addImgBase64(base64) {
   document.getElementsByTagName('img')[0].src = Pollux.base64StringToImgSrc(base64);
