@@ -43,34 +43,19 @@ $(document).ready(function() {
 });
 
 function showPairedBluetoothDevices(pairedBluetoothDevices){
-	var pairedDevices = JSON.parse(pairedBluetoothDevices);
-  addJSONToList(pairedDevices, "bluetoothPairedList");
+  addJSONStringToList(pairedBluetoothDevices, "bluetoothPairedList");
 }
 
-
 function mockGetDeviceInfo() {
-  var deviceInfo = JSON.parse(Android.getDeviceInfo());
-  addJSONToList(deviceInfo, "deviceInfoList");
-  // for (var key in deviceInfo) {
-  //   if (deviceInfo.hasOwnProperty(key)) {
-  //     var val = deviceInfo[key];
-  //     createListElement(key, val, "deviceInfoList");
-  //   }
-  // }
+  addJSONStringToList(Android.getDeviceInfo(), "deviceInfoList");
 }
 
 function foundBluetoothDevices(foundBluetoothDevice){
-	var bluetoothDevice = JSON.parse(foundBluetoothDevice);
-	addJSONToList(bluetoothDevice, "bluetoothDeviceList");
-	// for (var key in bluetoothDevice) {
- //    if (bluetoothDevice.hasOwnProperty(key)) {
- //      var val = bluetoothDevice[key];
- //      createListElement(key, val, "bluetoothDeviceList");
- //    }
- //  }
+	addJSONStringToList(foundBluetoothDevice, "bluetoothDeviceList");
 }
 
-function addJSONToList(aJSON, id){
+function addJSONStringToList(aJSONString, id){
+	var aJSON = JSON.parse(aJSONString);
 	for (var key in aJSON) {
     if (aJSON.hasOwnProperty(key)) {
       var val = aJSON[key];
