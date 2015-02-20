@@ -38,6 +38,7 @@ $(document).ready(function() {
 
 
 function mockGetDeviceInfo() {
+	console.log('From mockGetDeviceInfo android is: '      + Android);
   var deviceInfoUnformated = Android.getDeviceInfo();
   var deviceInfo = JSON.parse(deviceInfoUnformated);
 
