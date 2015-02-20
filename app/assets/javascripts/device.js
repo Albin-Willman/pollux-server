@@ -38,7 +38,9 @@ var AndroidDeviceAdapter = function() {
   this.getGeoLocation = function() {
     return '{ error: "Not implemented yet!" }'
   }
-
+  this.discoverBluetoothDevices = function() {
+    client.discoverBluetoothDevices();
+  }
   return this;
 };
 
@@ -58,6 +60,9 @@ var WebDeviceAdapter = function() {
       callback(JSON.stringify(geoLocation.coords));
     });
   };
+  this.discoverBluetoothDevices = function() {
+    alert('Not supported');
+  }
 
   this.showDeviceInfo = function() {
     return JSON.stringify({

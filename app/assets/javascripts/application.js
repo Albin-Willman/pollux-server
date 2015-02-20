@@ -29,7 +29,22 @@ $(document).ready(function() {
     e.preventDefault();
     getDeviceInfo();
   });
+  $('#js-bluetooth-devices').on('click', function(e) {
+    e.preventDefault();
+    PolluxDevice.discoverBluetoothDevices();
+  });
 });
+
+function foundBluetoothDevices(foundBluetoothDevice){
+	var bluetoothDevice = JSON.parse(foundBluetoothDevice);
+
+	for (var key in bluetoothDevice) {
+    if (bluetoothDevice.hasOwnProperty(key)) {
+      var val = bluetoothDevice[key];
+      createListElement(key, val, "bluetoothDeviceList");
+    }
+  }
+}
 
 function addImgBase64(base64) {
   document.getElementsByTagName('img')[0].src = Pollux.base64StringToImgSrc(base64);
@@ -42,17 +57,17 @@ function getDeviceInfo() {
   console.log('Unformated: '  + deviceInfoUnformated);
   console.log(deviceInfo);
 
-  var createListElement = function(infoType, value) {
-    var deviceList  = document.getElementById('deviceInfoList');
-    var listElement = document.createElement('li');
-    listElement.appendChild(document.createTextNode(infoType + ': ' + value));
-    deviceList.appendChild(listElement);
-  }
-
   for (var key in deviceInfo) {
     if (deviceInfo.hasOwnProperty(key)) {
       var val = deviceInfo[key];
-      createListElement(key, val);
+      createListElement(key, val, "deviceInfoList");
     }
   }
+}
+
+function createListElement(infoType, value, listId) {
+  var list  = document.getElementById(listId);
+  var listElement = document.createElement('li');
+  listElement.appendChild(document.createTextNode(infoType + ': ' + value));
+  list.appendChild(listElement);
 }
