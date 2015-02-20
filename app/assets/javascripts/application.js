@@ -27,13 +27,27 @@ $(document).ready(function() {
 
   $('#js-device-info').on('click', function(e) {
     e.preventDefault();
-    getDeviceInfo();
+    // getDeviceInfo();
+    mockGetDeviceInfo();
   });
   $('#js-bluetooth-devices').on('click', function(e) {
     e.preventDefault();
     PolluxDevice.discoverBluetoothDevices();
   });
 });
+
+
+function mockGetDeviceInfo() {
+  var deviceInfoUnformated = Android.getDeviceInfo();
+  var deviceInfo = JSON.parse(deviceInfoUnformated);
+
+  for (var key in deviceInfo) {
+    if (deviceInfo.hasOwnProperty(key)) {
+      var val = deviceInfo[key];
+      createListElement(key, val, "deviceInfoList");
+    }
+  }
+}
 
 function foundBluetoothDevices(foundBluetoothDevice){
 	var bluetoothDevice = JSON.parse(foundBluetoothDevice);
