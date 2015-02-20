@@ -32,7 +32,8 @@ $(document).ready(function() {
   });
   $('#js-bluetooth-devices').on('click', function(e) {
     e.preventDefault();
-    PolluxDevice.discoverBluetoothDevices();
+    // PolluxDevice.discoverBluetoothDevices();
+    Android.discoverBluetoothDevices();
   });
 });
 
