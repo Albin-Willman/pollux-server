@@ -14,106 +14,45 @@
 //= require jquery_ujs
 //= require_tree .
 
+$(document).ready(function() {
+  $('#js-toaster').on('click', function(e) {
+    e.preventDefault();
+    PolluxDevice.showToast("Hello world! I'm a web client");
+  });
 
-function showToast(toast) {
-    Android.showToast(toast);
-} 
+  $('#js-request-image').on('click', function(e) {
+    e.preventDefault();
+    PolluxDevice.requestImage();
+  });
 
-function requestImage(){
-	Android.requestImage();
+  $('#js-device-info').on('click', function(e) {
+    e.preventDefault();
+    getDeviceInfo();
+  });
+});
+
+function addImgBase64(base64) {
+  document.getElementsByTagName('img')[0].src = Pollux.base64StringToImgSrc(base64);
 }
 
-function addImgBase64(base64){
-	document.getElementsByTagName("img")[0].src="data:image/jpeg;base64," + base64;
+function getDeviceInfo() {
+  var deviceInfoUnformated = PolluxDevice.showDeviceInfo();
+  var deviceInfo = JSON.parse(deviceInfoUnformated);
+
+  console.log('Unformated: '  + deviceInfoUnformated);
+  console.log(deviceInfo);
+
+  var createListElement = function(infoType, value) {
+    var deviceList  = document.getElementById('deviceInfoList');
+    var listElement = document.createElement('li');
+    listElement.appendChild(document.createTextNode(infoType + ': ' + value));
+    deviceList.appendChild(listElement);
+  }
+
+  for (var key in deviceInfo) {
+    if (deviceInfo.hasOwnProperty(key)) {
+      var val = deviceInfo[key];
+      createListElement(key, val);
+    }
+  }
 }
-
-var deviceInfoUnformated;
-
-function getDeviceInfo(){
-  	deviceInfoUnformated = Android.getDeviceInfo();
-  	console.log('Unformated:'  + deviceInfoUnformated);
-  	var deviceInfo = JSON.parse(deviceInfoUnformated);
-  	console.log(deviceInfo);
-	
-	for (var key in deviceInfo) {
-	  if (deviceInfo.hasOwnProperty(key)) {
-	    var val = deviceInfo[key];
-	    appendChild(key, val);
-	  }
-	}
- }
-
- function appendChild(infoType, value){
- 	var deviceList = document.getElementById("deviceInfoList");
-  	var listElement = document.createElement('li');
-  	listElement.appendChild(document.createTextNode(infoType + ': ' + value));
-  	deviceList.appendChild(listElement);
- }
-
-
-
-
-// var PolluxDevice = function() {
-//   this.device = null;
-//   if (typeof Android !== 'undefined') {
-//     console.log('Running on a native Android device.');
-//     device = TbAndroidAdapter;
-//   } else {
-//     console.log('Not running on native device.');
-//     device = TbWebInterface;
-//   }
-//   return device;
-// };
-
-
-// var TbAndroidAdapter = function() {
-//   this.client = Android;
-
-//   this.showToast = function(msg) {
-//     client.showToast(msg);
-//   };
-
-//   this.requestImage = function(){
-//   	client.requestImage();
-//   };
-
-//   this.showDeviceInfo = function(){
-//   	var deviceInfo = client.showDeviceInfo();
-
-//   }
-// };
-
-
-	
-
-// var device = PolluxDevice();
-// console.log("Device:" + device);
-// device.showToast('Hello native toaster!'); // Will show toast on both Android, iOS and Web
-// // device.showDeviceInfo();
-
-
-// var TbWebInterface = function() {
-//   this.webToast = function(msg) {
-//     alert(msg);
-//   };
-
-//   this.requestImage = function(){
-//   	alert("Not supported yet");
-//   };
-//   this.showDeviceInfo = function(){
-//   	alert("Not supported yet");
-//   };
-
-// };
-
-// function showToast(toast) {
-//     device.showToast(toast);
-// } 
-
-// function requestImage(){
-// 	device.requestImage();
-// }
-
-// function addImgBase64(base64){
-// 	document.getElementsByTagName("img")[0].src="data:image/jpeg;base64," + base64;
-// }
