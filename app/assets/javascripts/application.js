@@ -51,7 +51,7 @@ function hardCalculation(){
   var timeStamp = Date.now();
   console.log(timeStamp);
   Android.sleepFiveSecAndLog();
-  console.log(Date.now() - timeStamp);
+  console.log(Date.now() - timeStamp / 1000);
 }
 
 
