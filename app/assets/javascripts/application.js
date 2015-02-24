@@ -63,16 +63,16 @@ function hardCalculation(){
   if (firstClick == null) {
     firstClick = Date.now();
     Android.sleepFiveSecAndLog();
-    console.log(Date.now() - firstClick / 1000);
+    console.log((Date.now() - firstClick) / 1000);
   } else {
     secondClick = Date.now()
     Android.sleepFiveSecAndLog();
-    console.log(Date.now() - secondClick / 1000);
+    console.log((Date.now() - secondClick) / 1000);
   }
 }
 function androidLog(){
   Android.log();
-  console.log(Date.now() - firstClick);
+  console.log((Date.now() - firstClick)/1000);
 }
 
 function showPairedBluetoothDevices(pairedBluetoothDevices){
