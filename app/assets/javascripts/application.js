@@ -40,7 +40,21 @@ $(document).ready(function() {
     // PolluxDevice.discoverBluetoothDevices();
     Android.getPairedBluetoothDevices();
   });
+  $('#js-hard-calculation').on('click', function(e) {
+    e.preventDefault();
+    // PolluxDevice.discoverBluetoothDevices();
+    hardCalculation();
+  });
 });
+
+function hardCalculation(){
+  var timeStamp = Date.now();
+  console.log(timeStamp);
+  Android.sleepFiveSecAndLog();
+  console.log(Date.now() - timeStamp);
+}
+
+
 
 function showPairedBluetoothDevices(pairedBluetoothDevices){
   addJSONStringToList(pairedBluetoothDevices, "bluetoothPairedList");
