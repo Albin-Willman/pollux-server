@@ -1,11 +1,29 @@
 <% content_for :content do %>
-<h1>Welcome to pollux start page</h1>
-<h2>JS methods</h2>
-<h3>Deploy Sucess</h3>
-<ul>
-  <li>sayHello();</li>
-</ul>
-<img src="" alt="hej jag e en bild">
-<input type="button" value="Say hello to android" onClick="showAndroidToast('Hello Android!')" />
-<p id="floatNumber"></p>
+  <h1>Welcome to pollux start page</h1>
+  <h2>JS methods</h2>
+  <ul>
+    <li>addImgBase64(); this function is called from native android</li>
+    <li>showAndroidToast(String);</li>
+    <li>requestImage();</li>
+  </ul>
+
+  <h2>Device info</h2>
+  <ul id="deviceInfoList"> </ul>
+  
+  <h2>Bluetooth Devices</h2>
+  <ul id="bluetoothDeviceList"></ul>
+
+  <h2>Bluetooth Paired Devices</h2>
+  <ul id="bluetoothPairedList"></ul>
+ 
+  <img src="">
+  <input type="button" value="Say hello"       id="js-toaster" />
+  <input type="button" value="Request image"   id="js-request-image" />
+  <input type="button" value="Get device info" id="js-device-info" />
+  <input type="button" value="Discover bluetooth devices" id="js-bluetooth-devices" />
+  <input type="button" value="Paired bluetooth devices" id="js-bluetooth-paired" />
+  <input type="button" value="Try blocking native method" id="js-hard-calculation" />
+  <input type="button" value="Try blocking native method 2" id="js-hard-calculation-2" />
+  <input type="button" value="Log in android" id="js-android-log" />
 <% end %>
+
