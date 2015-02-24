@@ -56,10 +56,11 @@ $(document).ready(function() {
     androidLog();
   });
 });
+
 var timeStamp1;
 var timeStamp2;
 
-function hardCalculation(var button){
+function hardCalculation(button){
   if (button === "button 1") {
     timeStamp1 = Date.now();
     Android.sleepFiveSecAndLog();
