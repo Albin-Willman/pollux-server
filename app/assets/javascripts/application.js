@@ -43,12 +43,12 @@ $(document).ready(function() {
   $('#js-hard-calculation').on('click', function(e) {
     e.preventDefault();
     // PolluxDevice.discoverBluetoothDevices();
-    hardCalculation();
+    hardCalculation("button 1");
   });
   $('#js-hard-calculation-2').on('click', function(e) {
     e.preventDefault();
     // PolluxDevice.discoverBluetoothDevices();
-    hardCalculation();
+    hardCalculation("button 2");
   });
   $('#js-android-log').on('click', function(e) {
     e.preventDefault();
@@ -56,23 +56,25 @@ $(document).ready(function() {
     androidLog();
   });
 });
-var firstClick;
-var secondClick;
+var timeStamp1;
+var timeStamp2;
 
-function hardCalculation(){
-  if (firstClick == null) {
-    firstClick = Date.now();
+function hardCalculation(var button){
+  if (button === "button 1") {
+    timeStamp1 = Date.now();
     Android.sleepFiveSecAndLog();
-    console.log((Date.now() - firstClick) / 1000);
-  } else {
-    secondClick = Date.now()
+    // console.log((Date.now() - timeStamp1) / 1000);
+  } else if(button === "button 2"){
+    console.log(button, "button 2 clicked");
+    timeStamp2 = Date.now();
+    console.log(button, "The time between the button was clicked: " + (timeStamp2-timeStamp1));
     Android.sleepFiveSecAndLog();
-    console.log((Date.now() - secondClick) / 1000);
+    console.log(button, "is this appr 5 sec?: " +  ((Date.now() - timeStamp2) / 1000));
   }
 }
 function androidLog(){
   Android.log();
-  console.log((Date.now() - firstClick)/1000);
+  console.log((Date.now() - timeStamp1)/1000);
 }
 
 function showPairedBluetoothDevices(pairedBluetoothDevices){
