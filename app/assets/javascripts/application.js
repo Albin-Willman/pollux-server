@@ -70,6 +70,8 @@ function hardCalculation(var button){
     console.log(button, "The time between the button was clicked: " + (timeStamp2-timeStamp1));
     Android.sleepFiveSecAndLog();
     console.log(button, "is this appr 5 sec?: " +  ((Date.now() - timeStamp2) / 1000));
+  } else{
+    console.log("wrong button pressed yaaaw");  
   }
 }
 function androidLog(){
