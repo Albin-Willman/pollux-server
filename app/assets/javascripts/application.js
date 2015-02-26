@@ -17,7 +17,7 @@
 $(document).ready(function() {
   $('#js-toaster').on('click', function(e) {
     e.preventDefault();
-    PolluxDevice.showToast("Hello world! I'm a web client");
+    PolluxDevice.showToast("Hello");
   });
 
   $('#js-request-image').on('click', function(e) {
@@ -27,32 +27,28 @@ $(document).ready(function() {
 
   $('#js-device-info').on('click', function(e) {
     e.preventDefault();
-    // getDeviceInfo();
-    mockGetDeviceInfo();
+    PolluxDevice.showDeviceInfo();
   });
   $('#js-bluetooth-devices').on('click', function(e) {
     e.preventDefault();
-    // PolluxDevice.discoverBluetoothDevices();
-    Android.discoverBluetoothDevices();
+    PolluxDevice.discoverBluetoothDevices();
+    // Android.discoverBluetoothDevices();
   });
   $('#js-bluetooth-paired').on('click', function(e) {
     e.preventDefault();
-    // PolluxDevice.discoverBluetoothDevices();
-    Android.getPairedBluetoothDevices();
+    PolluxDevice.discoverBluetoothDevices();
+    // Android.getPairedBluetoothDevices();
   });
   $('#js-hard-calculation').on('click', function(e) {
     e.preventDefault();
-    // PolluxDevice.discoverBluetoothDevices();
     hardCalculation("button 1");
   });
   $('#js-hard-calculation-2').on('click', function(e) {
     e.preventDefault();
-    // PolluxDevice.discoverBluetoothDevices();
     hardCalculation("button 2");
   });
   $('#js-android-log').on('click', function(e) {
     e.preventDefault();
-    // PolluxDevice.discoverBluetoothDevices();
     androidLog();
   });
 });
@@ -64,7 +60,6 @@ function hardCalculation(button){
   if (button === "button 1") {
     timeStamp1 = Date.now();
     Android.sleepFiveSecAndLog();
-    // console.log((Date.now() - timeStamp1) / 1000);
   } else if(button === "button 2"){
     console.log(button + " button 2 clicked");
     timeStamp2 = Date.now();
@@ -84,47 +79,31 @@ function showPairedBluetoothDevices(pairedBluetoothDevices){
   addJSONStringToList(pairedBluetoothDevices, "bluetoothPairedList");
 }
 
-function mockGetDeviceInfo() {
-  addJSONStringToList(Android.getDeviceInfo(), "deviceInfoList");
-}
-
 function foundBluetoothDevices(foundBluetoothDevice){
 	addJSONStringToList(foundBluetoothDevice, "bluetoothDeviceList");
 }
-
-function addJSONStringToList(aJSONString, id){
-	var aJSON = JSON.parse(aJSONString);
-	for (var key in aJSON) {
-    if (aJSON.hasOwnProperty(key)) {
-      var val = aJSON[key];
-      createListElement(key, val, id);
-    }
-  }	
-}
-
 
 function addImgBase64(base64) {
   document.getElementsByTagName('img')[0].src = Pollux.base64StringToImgSrc(base64);
 }
 
-function getDeviceInfo() {
-  var deviceInfoUnformated = PolluxDevice.showDeviceInfo();
-  var deviceInfo = JSON.parse(deviceInfoUnformated);
-
-  console.log('Unformated: '  + deviceInfoUnformated);
-  console.log(deviceInfo);
-
-  for (var key in deviceInfo) {
-    if (deviceInfo.hasOwnProperty(key)) {
-      var val = deviceInfo[key];
-      createListElement(key, val, "deviceInfoList");
-    }
-  }
+function showDeviceInfo(deviceInfo) {
+  addJSONStringToList(deviceInfo, "deviceInfoList");
 }
 
-function createListElement(infoType, value, listId) {
-  var list  = document.getElementById(listId);
-  var listElement = document.createElement('li');
-  listElement.appendChild(document.createTextNode(infoType + ': ' + value));
-  list.appendChild(listElement);
+function addJSONStringToList(aJSONString, id){
+  var aJSON = JSON.parse(aJSONString);
+  
+  var createListElement = function(infoType, value, listId) {
+    var list  = document.getElementById(listId);
+    var listElement = document.createElement('li');
+    listElement.appendChild(document.createTextNode(infoType + ': ' + value));
+    list.appendChild(listElement);
+  }
+  for (var key in aJSON) {
+    if (aJSON.hasOwnProperty(key)) {
+      var val = aJSON[key];
+      createListElement(key, val, id);
+    }
+  } 
 }
