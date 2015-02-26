@@ -4,7 +4,7 @@ var Pollux = function() {
   this.base64StringToImgSrc = function(base64String) {
     return 'data:image/jpeg;base64,' + base64String;
   };
-  
+
 };
 
 var PolluxDeviceFactory = function() {
@@ -14,7 +14,7 @@ var PolluxDeviceFactory = function() {
     console.log('Running on a native Android device.');
     device = new AndroidDeviceAdapter();
   } else {
-    console.log('Not running on native device.');
+    console.log('Ruuning in webbrowser');
     device = new WebDeviceAdapter();
   }
   return device;
