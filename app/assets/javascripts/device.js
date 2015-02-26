@@ -79,4 +79,4 @@ var WebDeviceAdapter = function() {
 
 var PolluxDevice = new PolluxDeviceFactory();
 console.log('Device: '      + PolluxDevice.deviceType);
-console.log('Device info: ' + PolluxDevice.showDeviceInfo())
+// console.log('Device info: ' + PolluxDevice.showDeviceInfo())
