@@ -13,7 +13,11 @@ var PolluxDeviceFactory = function() {
   if (typeof Android !== 'undefined') {
     console.log('Running on a native Android device.');
     device = new AndroidDeviceAdapter();
-  } else {
+  } else if(app !== 'undefined'){
+    console.log('Running via phonegap.');
+    device = new PhonegapDeviceAdapter();
+  }
+   else {
     console.log('Ruuning in webbrowser');
     device = new WebDeviceAdapter();
   }
