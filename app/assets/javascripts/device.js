@@ -14,7 +14,8 @@ var PolluxDeviceFactory = function() {
     console.log('Running on a native Android device.');
     device = new AndroidDeviceAdapter();
   } else if(app !== 'undefined'){
-    console.log('Running via phonegap.');
+    // console.log('Running via phonegap.');
+    alert('Running via phonegap.');
     // device = new PhonegapDeviceAdapter();
   }
    else {
@@ -22,6 +23,15 @@ var PolluxDeviceFactory = function() {
     device = new WebDeviceAdapter();
   }
   return device;
+};
+
+var PhonegapDeviceAdapter = function(){
+  this.client = app;
+  this.deviceType = 'phonegap application';
+
+  this.showToast = function(msg) {
+    this.app.showToast(msg);
+  };
 };
 
 var AndroidDeviceAdapter = function() {
@@ -82,5 +92,5 @@ var WebDeviceAdapter = function() {
 };
 
 var PolluxDevice = new PolluxDeviceFactory();
-console.log('Device: '      + PolluxDevice.deviceType);
+// console.log('Device: '      + PolluxDevice.deviceType);
 // console.log('Device info: ' + PolluxDevice.showDeviceInfo())
