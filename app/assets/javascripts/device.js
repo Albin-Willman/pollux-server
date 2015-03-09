@@ -15,7 +15,7 @@ var PolluxDeviceFactory = function() {
     device = new AndroidDeviceAdapter();
   } else if(app !== 'undefined'){
     console.log('Running via phonegap.');
-    device = new PhonegapDeviceAdapter();
+    // device = new PhonegapDeviceAdapter();
   }
    else {
     console.log('Ruuning in webbrowser');
