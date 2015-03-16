@@ -13,26 +13,27 @@ var PolluxDeviceFactory = function() {
   if (typeof Android !== 'undefined') {
     console.log('Running on a native Android device.');
     device = new AndroidDeviceAdapter();
-  } else if(app !== 'undefined'){
-    // console.log('Running via phonegap.');
-    alert('Running via phonegap.');
-    // device = new PhonegapDeviceAdapter();
-  }
+  } 
+  // else if(app !== 'undefined'){
+  //   // console.log('Running via phonegap.');
+  //   alert('Running via phonegap.');
+  //   // device = new PhonegapDeviceAdapter();
+  // }
    else {
-    console.log('Ruuning in webbrowser');
+    console.log('Running in webbrowser');
     device = new WebDeviceAdapter();
   }
   return device;
 };
 
-var PhonegapDeviceAdapter = function(){
-  this.client = app;
-  this.deviceType = 'phonegap application';
+// var PhonegapDeviceAdapter = function(){
+//   this.client = app;
+//   this.deviceType = 'phonegap application';
 
-  this.showToast = function(msg) {
-    this.app.showToast(msg);
-  };
-};
+//   this.showToast = function(msg) {
+//     this.app.showToast(msg);
+//   };
+// };
 
 var AndroidDeviceAdapter = function() {
   this.client = Android;
