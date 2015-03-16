@@ -3,5 +3,5 @@ $( document ).ready(function() {
 });
 
 function wizMessageReceiver (event) {
-   	$("#phonegap-msg").append("The method was succesfully called");
+   	$("#phonegap-msg").append("PHONEGAP OMG OMG OMG");
 }
