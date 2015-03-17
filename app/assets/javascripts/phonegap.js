@@ -1,5 +1,5 @@
 $( document ).ready(function() {
-    window.addEventListener('message', wizMessageReceiver, false);
+    document.addEventListener('message', wizMessageReceiver, false);
 });
 
 function wizMessageReceiver (event) {
