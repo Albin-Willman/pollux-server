@@ -1,11 +1,11 @@
 class HomeController < ApplicationController
-	after_action :allow_phonegap_iframe
+	after_action :allow_iframe
 
 	private
 
-	  def allow_phonegap_iframe
-    	response.headers['X-Frame-Options'] = 'ALLOW-FROM *'
-  	end
+	  def allow_iframe
+    response.headers.except! 'X-Frame-Options'
+  end
 
 
   def start
