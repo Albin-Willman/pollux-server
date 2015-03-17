@@ -4,7 +4,7 @@ class HomeController < ApplicationController
 	private
 
 	  def allow_phonegap_iframe
-    response.headers['X-Frame-Options'] = 'ALLOW-FROM file://'
+    response.headers['X-Frame-Options'] = 'ALLOW-FROM *'
   end
 
 
