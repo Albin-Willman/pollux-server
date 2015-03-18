@@ -15,6 +15,8 @@
 //= require_tree .
 
 $(document).ready(function() {
+  receiver.addMessageListener();
+
   $('#js-toaster').on('click', function(e) {
     e.preventDefault();
     PolluxDevice.showToast("Hello");
