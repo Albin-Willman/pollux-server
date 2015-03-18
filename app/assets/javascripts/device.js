@@ -14,7 +14,8 @@ var PhoneGapDeviceAdapter = function() {
   };
 
   this.requestImage = function() {
-    bridge.requestImage()
+    bridge.requestImage();
+
   };
 
   this.showDeviceInfo = function() {
@@ -64,6 +65,7 @@ var WebDeviceAdapter = function() {
 
 function setPhoneGapDevice(){
   PolluxDevice = new PhoneGapDeviceAdapter();
+  console.log("web client, device: device set to PhoneGapDevice");
 }
 
 var PolluxDevice = new WebDeviceAdapter();
