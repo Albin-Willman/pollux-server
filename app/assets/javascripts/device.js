@@ -4,51 +4,28 @@ var Pollux = function() {
   this.base64StringToImgSrc = function(base64String) {
     return 'data:image/jpeg;base64,' + base64String;
   };
-
 };
 
-var PolluxDeviceFactory = function() {
-  this.device = null;
-  if (typeof Android !== 'undefined') {
-    console.log('Running on a native Android device.');
-    device = new AndroidDeviceAdapter();
-  } else {
-    console.log('Running in webbrowser');
-    device = new WebDeviceAdapter();
-  }
-  return device;
-};
-
-// var PhonegapDeviceAdapter = function(){
-//   this.client = app;
-//   this.deviceType = 'phonegap application';
-
-//   this.showToast = function(msg) {
-//     this.app.showToast(msg);
-//   };
-// };
-
-var AndroidDeviceAdapter = function() {
-  this.client = Android;
-  this.deviceType = 'android';
+var PhoneGapDeviceAdapter = function() {
+  this.deviceType = 'PhoneGap';
 
   this.showToast = function(msg) {
-    this.client.showToast(msg);
+    alert("not supported");
   };
 
   this.requestImage = function() {
-    this.client.requestImage();
+    bridge.requestImage()
   };
 
   this.showDeviceInfo = function() {
-    showDeviceInfo(this.client.getDeviceInfo());
+    alert("not supported");
   };
 
   this.getGeoLocation = function() {
-    return '{ error: "Not implemented yet!" }'
+    alert("not supported");
   }
   this.discoverBluetoothDevices = function() {
-    this.client.discoverBluetoothDevices();
+    alert("not supported");
   }
   return this;
 };
@@ -85,6 +62,8 @@ var WebDeviceAdapter = function() {
   return this;
 };
 
-var PolluxDevice = new PolluxDeviceFactory();
-// console.log('Device: '      + PolluxDevice.deviceType);
-// console.log('Device info: ' + PolluxDevice.showDeviceInfo())
+function setPhoneGapDevice(){
+  PolluxDevice = new PhoneGapDeviceAdapter();
+}
+
+var PolluxDevice = new WebDeviceAdapter();
