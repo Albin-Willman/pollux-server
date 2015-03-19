@@ -15,6 +15,8 @@
 //= require_tree .
 
 $(document).ready(function() {
+  receiver.addMessageListener();
+
   $('#js-toaster').on('click', function(e) {
     e.preventDefault();
     PolluxDevice.showToast("Hello");
@@ -39,41 +41,7 @@ $(document).ready(function() {
     PolluxDevice.discoverBluetoothDevices();
     // Android.getPairedBluetoothDevices();
   });
-  $('#js-hard-calculation').on('click', function(e) {
-    e.preventDefault();
-    hardCalculation("button 1");
-  });
-  $('#js-hard-calculation-2').on('click', function(e) {
-    e.preventDefault();
-    hardCalculation("button 2");
-  });
-  $('#js-android-log').on('click', function(e) {
-    e.preventDefault();
-    androidLog();
-  });
 });
-
-// var timeStamp1;
-// var timeStamp2;
-
-// function hardCalculation(button){
-//   if (button === "button 1") {
-//     timeStamp1 = Date.now();
-//     Android.sleepFiveSecAndLog();
-//   } else if(button === "button 2"){
-//     console.log(button + " button 2 clicked");
-//     timeStamp2 = Date.now();
-//     console.log(button + " The time between the button was clicked: " + (timeStamp2-timeStamp1));
-//     Android.sleepFiveSecAndLog();
-//     console.log(button + " is this appr 5 sec?: " +  ((Date.now() - timeStamp2) / 1000));
-//   } else{
-//     console.log("wrong button pressed yaaaw");  
-//   }
-// }
-// function androidLog(){
-//   Android.log();
-//   console.log((Date.now() - timeStamp1)/1000);
-// }
 
 function showPairedBluetoothDevices(pairedBluetoothDevices){
   addJSONStringToList(pairedBluetoothDevices, "bluetoothPairedList");

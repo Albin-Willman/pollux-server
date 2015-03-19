@@ -1,6 +1,13 @@
 <% content_for :content do %>
-  <h1>Welcome to pollux start page</h1>
-  <!-- <h2>JS methods</h2>
+
+  <h1 id="received-message">Message: </h1>
+  <button type="button" id="js-send-message">Send message to phonegap</button> 
+  <img src="">
+  <input type="button" value="Request image" id="js-request-image" />
+  <!-- <h1>Welcome to pollux start page</h1>
+  <h2 id="phonegap-msg"></h2>
+  <h2>JS methods</h2>
+  
   <ul>
     <li>addImgBase64(); this function is called from native android</li>
     <li>showAndroidToast(String);</li>
@@ -29,4 +36,3 @@
   <input type="button" value="Try blocking native method 2" id="js-hard-calculation-2" />
   <input type="button" value="Log in android" id="js-android-log" /> -->
 <% end %>
-
