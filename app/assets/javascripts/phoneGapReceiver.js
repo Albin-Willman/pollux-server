@@ -5,7 +5,7 @@ var receiver = {
 	},
 
 	messageReceived: function(event){
-		console.log("webclient receiver: messageReceived - " + event.data);
+		console.log("webclient receiver: messageReceived > " + event.data);
 
 		/*var eventJSON = event.data;
 		if(eventJSON.type === "camera"){
