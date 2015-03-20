@@ -1,11 +1,16 @@
 var bridge = {
+	requestCamera: function(){
+		console.log("webclient, bridge: requestCamera");
+		sender.requestCamera();
+	},
+	
 	requestImage: function(){
-		console.log("webclient, bridge: sent imagerequest");
+		console.log("webclient, bridge: requestImage");
 		sender.requestImage();
 	},
 
 	requestGeolocation: function() {
-		console.log("webclient, bridge: sent geolocationRequest");
+		console.log("webclient, bridge: requestGeolocation");
 		sender.requestGeolocation();
 	},
 
