@@ -3,4 +3,5 @@ var bridge = {
 		sender.requestImage();
 		console.log("webclient, bridge: sent imagerequest");
 	}
+	
 }
