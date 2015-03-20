@@ -14,30 +14,30 @@
 //= require jquery_ujs
 //= require_tree .
 
-// $(document).ready(function() {
-//   receiver.addMessageListener();
+$(document).ready(function() {
+  receiver.addMessageListener();
   
-//   $("#take-image-button-native-app").on('click', function(e) {
-//     e.preventDefault();
-//     // PolluxDevice.requestImage();
-//   });
+  $("#take-image-button-native-app").on('click', function(e) {
+    e.preventDefault();
+    // PolluxDevice.requestImage();
+  });
 
 
 
-//   $("#upload-image-button-native-app").on('click', function(e) {
-//     e.preventDefault();
-//     //not implemented yet
-//     // PolluxDevice.uploadImage();
-//   });
+  $("#upload-image-button-native-app").on('click', function(e) {
+    e.preventDefault();
+    //not implemented yet
+    // PolluxDevice.uploadImage();
+  });
 
   
-//   $("#button-add-location").on('click', function(e) {
-//     e.preventDefault();
-//     // PolluxDevice.getGeolocation();
-//     //not implemented yet
-//     // PolluxDevice.uploadImage();
-//   });
-// });
+  $("#button-add-location").on('click', function(e) {
+    e.preventDefault();
+    // PolluxDevice.getGeolocation();
+    //not implemented yet
+    // PolluxDevice.uploadImage();
+  });
+});
 
 function addImgBase64(base64) {
   document.getElementsByTagName('img')[0].src = base64StringToImgSrc(base64);
