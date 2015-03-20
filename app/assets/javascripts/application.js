@@ -24,7 +24,6 @@ $(document).ready(function() {
 
 
 
-
   $("#upload-image-button-native-app").on('click', function(e) {
     e.preventDefault();
     //not implemented yet

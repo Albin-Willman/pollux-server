@@ -13,13 +13,13 @@
     <label>Image of the meal</label>
 
     <!-- Is shown if the user is on the regular web-application -->
-    <div id="image-webclient">
+    <!-- <div id="image-webclient">
       <input type="file" id="exampleInputFile">
       <p class="help-block">Press to upload an image</p>
-    </div>
+    </div> -->
 
     <!-- Is shown if it's loaded in a native application -->
-    <div class="row" id="image-native-app" style="display: none">
+    <div class="row" id="image-native-app">
       <div class="col-sm-6 col-md-4">
         <div class="thumbnail">
           <img src="" id="image-native-app">
@@ -43,7 +43,7 @@
     <!-- Is shown if it's loaded in a native application -->
     <div id="location-native-app" style="display: none">
       <label for="mealType">Add your location</label>
-      <button class="btn btn-default" type="button" id="button-location">Add location</button>
+      <button class="btn btn-default" type="button" id="button-add-location">Add location</button>
       <p class="help-block">Press to add your location</p>
       <p class="lead" style="display: none" id="p-location-native-app"></p>
     </div>
