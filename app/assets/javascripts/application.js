@@ -16,40 +16,11 @@
 
 $(document).ready(function() {
   receiver.addMessageListener();
-
-  $('#js-toaster').on('click', function(e) {
-    e.preventDefault();
-    PolluxDevice.showToast("Hello");
-  });
-
   $('#js-request-image').on('click', function(e) {
     e.preventDefault();
     PolluxDevice.requestImage();
   });
-
-  $('#js-device-info').on('click', function(e) {
-    e.preventDefault();
-    PolluxDevice.showDeviceInfo();
-  });
-  $('#js-bluetooth-devices').on('click', function(e) {
-    e.preventDefault();
-    PolluxDevice.discoverBluetoothDevices();
-    // Android.discoverBluetoothDevices();
-  });
-  $('#js-bluetooth-paired').on('click', function(e) {
-    e.preventDefault();
-    PolluxDevice.discoverBluetoothDevices();
-    // Android.getPairedBluetoothDevices();
-  });
 });
-
-function showPairedBluetoothDevices(pairedBluetoothDevices){
-  addJSONStringToList(pairedBluetoothDevices, "bluetoothPairedList");
-}
-
-function foundBluetoothDevices(foundBluetoothDevice){
-	addJSONStringToList(foundBluetoothDevice, "bluetoothDeviceList");
-}
 
 function addImgBase64(base64) {
   document.getElementsByTagName('img')[0].src = base64StringToImgSrc(base64);
@@ -59,10 +30,18 @@ function base64StringToImgSrc (base64String) {
     return 'data:image/jpeg;base64,' + base64String;
 }
 
+
+
+// To be deleted
+/*function showPairedBluetoothDevices(pairedBluetoothDevices){
+  addJSONStringToList(pairedBluetoothDevices, "bluetoothPairedList");
+}
+function foundBluetoothDevices(foundBluetoothDevice){
+  addJSONStringToList(foundBluetoothDevice, "bluetoothDeviceList");
+}
 function showDeviceInfo(deviceInfo) {
   addJSONStringToList(deviceInfo, "deviceInfoList");
 }
-
 function addJSONStringToList(aJSONString, id){
   var aJSON = JSON.parse(aJSONString);
   
@@ -78,4 +57,4 @@ function addJSONStringToList(aJSONString, id){
       createListElement(key, val, id);
     }
   } 
-}
+}*/

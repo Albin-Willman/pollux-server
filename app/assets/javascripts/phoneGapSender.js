@@ -5,9 +5,16 @@ var sender = {
 	},
 
 	requestImage: function(){
-		var reqJSON = {
+		var requestImageJSON = {
 			"type": "camera"
-		}
-		this.sendMessage(reqJSON);
+		};
+		this.sendMessage(requestImageJSON);
+	},
+
+	requestGeolocation: function () {
+		var requestGeolocationJSON = {
+			"type": "geolocation"
+		};
+		this.sendMessage(requestGeolocationJSON);
 	}
 }

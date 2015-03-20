@@ -1,42 +1,19 @@
-// Android adapter
-
-var Pollux = function() {
-  this.base64StringToImgSrc = function(base64String) {
-    return 'data:image/jpeg;base64,' + base64String;
-  };
-};
 
 var PhoneGapDeviceAdapter = function() {
-  this.deviceType = 'PhoneGap';
-
-  this.showToast = function(msg) {
-    alert("not supported");
-  };
+  this.deviceType = 'phonegap';
 
   this.requestImage = function() {
     bridge.requestImage();
-
-  };
-
-  this.showDeviceInfo = function() {
-    alert("not supported");
   };
 
   this.getGeoLocation = function() {
-    alert("not supported");
-  }
-  this.discoverBluetoothDevices = function() {
-    alert("not supported");
+    bridge.requestGeolocation();
   }
   return this;
 };
 
 var WebDeviceAdapter = function() {
   this.deviceType = 'web';
-
-  this.showToast = function(msg) {
-    alert(msg);
-  };
 
   this.requestImage = function() {
     alert('Not supported yet');
@@ -47,25 +24,13 @@ var WebDeviceAdapter = function() {
       callback(JSON.stringify(geoLocation.coords));
     });
   };
-  this.discoverBluetoothDevices = function() {
-    alert('Not supported');
-  }
-
-  this.showDeviceInfo = function() {
-    return showDeviceInfo(JSON.stringify({
-      name :         navigator.userAgent,
-      bluetooth:     false,
-      camera:        false,
-      accelerometer: false
-    }));
-  };
-
   return this;
 };
 
+// Called when running on PhoneGap
 function setPhoneGapDevice(){
   PolluxDevice = new PhoneGapDeviceAdapter();
   console.log("web client, device: device set to PhoneGapDevice");
 }
 
-var PolluxDevice = new WebDeviceAdapter();
+var PolluxDevice = new WebDeviceAdapter(); // PolluxDevice defaults to WebDeviceAdapter
