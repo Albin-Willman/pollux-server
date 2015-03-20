@@ -19,7 +19,7 @@ $(document).ready(function() {
   
   $("#take-image-button-native-app").on('click', function(e) {
     e.preventDefault();
-    PolluxDevice.requestImage();
+    // PolluxDevice.requestImage();
   });
 
 
@@ -33,7 +33,7 @@ $(document).ready(function() {
   
   $("#button-add-location").on('click', function(e) {
     e.preventDefault();
-    PolluxDevice.getGeolocation();
+    // PolluxDevice.getGeolocation();
     //not implemented yet
     // PolluxDevice.uploadImage();
   });
