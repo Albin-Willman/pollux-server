@@ -13,6 +13,10 @@ var bridge = {
 		addImgBase64(data);
 	},
 
+	getGeolocation: function(){
+		sender.requestGeolocation();
+	},
+
 	geolocationCallback: function (data) {
 		var locationJSON = JSON.parse(data);
 	}

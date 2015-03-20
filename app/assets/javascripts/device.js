@@ -30,6 +30,12 @@ var WebDeviceAdapter = function() {
 // Called when running on PhoneGap
 function setPhoneGapDevice(){
   PolluxDevice = new PhoneGapDeviceAdapter();
+  //show right styling on the blog 
+  $("#image-webclient").css("display","none");
+  $("#image-native-app").css("display","block");
+  $("#location-webclient").css("display","none");
+  $("#location-native-app").css("display","block");
+
   console.log("web client, device: device set to PhoneGapDevice");
 }
 

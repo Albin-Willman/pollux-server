@@ -16,9 +16,27 @@
 
 $(document).ready(function() {
   receiver.addMessageListener();
-  $('#js-request-image').on('click', function(e) {
+  
+  $("#take-image-button-native-app").on('click', function(e) {
     e.preventDefault();
     PolluxDevice.requestImage();
+  });
+
+
+
+
+  $("#upload-image-button-native-app").on('click', function(e) {
+    e.preventDefault();
+    //not implemented yet
+    // PolluxDevice.uploadImage();
+  });
+
+  
+  $("#button-add-location").on('click', function(e) {
+    e.preventDefault();
+    PolluxDevice.getGeolocation();
+    //not implemented yet
+    // PolluxDevice.uploadImage();
   });
 });
 
