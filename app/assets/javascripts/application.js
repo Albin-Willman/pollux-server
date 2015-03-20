@@ -45,7 +45,8 @@ function showLocation(locationJSON){
 }
 
 function addImgBase64(base64) {
-  $('#image').src = base64StringToImgSrc(base64);
+  console.log("web client, application.js, function: addImgBase64");
+  $('#image').attr("src", base64StringToImgSrc(base64));
 }
 
 function base64StringToImgSrc (base64String) {

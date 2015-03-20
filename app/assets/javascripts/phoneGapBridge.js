@@ -15,6 +15,7 @@ var bridge = {
 	},
 
 	cameraCallback: function (data) {
+		console.log("webclient, bridge: cameraCallback");
 		addImgBase64(data);
 	},
 
