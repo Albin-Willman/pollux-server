@@ -4,12 +4,18 @@ var sender = {
 		window.parent.postMessage(JSON.stringify(reqJSON), "file://");
 	},
 
-	requestImage: function(){
-		var requestImageJSON = {
+	requestCamera: function(){
+		var requestCameraJSON = {
 			"type": "camera"
 		};
-		this.sendMessage(requestImageJSON);
+		this.sendMessage(requestCameraJSON);
 	},
+	requestImage: function() {
+			var requestImageJSON = {
+			"type": "image"
+		};
+		this.sendMessage(requestImageJSON);
+	}
 
 	requestGeolocation: function () {
 		var requestGeolocationJSON = {
