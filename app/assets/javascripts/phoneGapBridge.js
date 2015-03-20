@@ -11,7 +11,7 @@ var bridge = {
 
 	requestGeolocation: function() {
 		console.log("webclient, bridge: requestGeolocation");
-		// sender.requestGeolocation();
+		sender.requestGeolocation();
 	},
 
 	cameraCallback: function (data) {
