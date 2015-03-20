@@ -2,27 +2,36 @@
 var PhoneGapDeviceAdapter = function() {
   this.deviceType = 'phonegap';
 
-  this.requestImage = function() {
+  this.requestCamera = function() {
+    bridge.requestCamera();
+  };
+
+  this.requestImage = function(){
     bridge.requestImage();
   };
 
   this.getGeoLocation = function() {
-    bridge.requestGeolocation();
-  }
+    bridge.getGeolocation();
+  };
   return this;
 };
 
 var WebDeviceAdapter = function() {
   this.deviceType = 'web';
 
-  this.requestImage = function() {
+  this.requestCamera = function() {
+    alert('Not supported yet');
+  };
+
+  this.requestImage = function(){
     alert('Not supported yet');
   };
 
   this.getGeoLocation = function(callback) {
-    navigator.geolocation.getCurrentPosition(function(geoLocation){
-      callback(JSON.stringify(geoLocation.coords));
-    });
+    alert('Not supported yet');
+    // navigator.geolocation.getCurrentPosition(function(geoLocation){
+    //   callback(JSON.stringify(geoLocation.coords));
+    // });
   };
   return this;
 };
@@ -30,13 +39,10 @@ var WebDeviceAdapter = function() {
 // Called when running on PhoneGap
 function setPhoneGapDevice(){
   PolluxDevice = new PhoneGapDeviceAdapter();
-  //show right styling on the blog 
-  $("#image-webclient").css("display","none");
-  $("#image-native-app").css("display","block");
-  $("#location-webclient").css("display","none");
-  $("#location-native-app").css("display","block");
-
   console.log("web client, device: device set to PhoneGapDevice");
+  
+  //show right styling on the blog 
+  $("#take-image-button").css("display","block");
 }
 
 var PolluxDevice = new WebDeviceAdapter(); // PolluxDevice defaults to WebDeviceAdapter

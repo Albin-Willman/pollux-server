@@ -1,28 +1,24 @@
 var bridge = {
 	requestCamera: function(){
 		console.log("webclient, bridge: requestCamera");
-		sender.requestCamera();
+		sender.sendMessage("camera");
 	},
 	
 	requestImage: function(){
 		console.log("webclient, bridge: requestImage");
-		sender.requestImage();
+		sender.sendMessage("image");
 	},
 
-	requestGeolocation: function() {
-		console.log("webclient, bridge: requestGeolocation");
-		sender.requestGeolocation();
+	getGeolocation: function() {
+		console.log("webclient, bridge: getGeolocation");
+		sender.sendMessage("geolocation");
 	},
 
 	cameraCallback: function (data) {
 		addImgBase64(data);
 	},
 
-	getGeolocation: function(){
-		sender.requestGeolocation();
-	},
-
-	geolocationCallback: function (data) {
-		var locationJSON = JSON.parse(data);
+	geolocationCallback: function (locationJSON) {
+		showLocation(locationJSON);
 	}
 }

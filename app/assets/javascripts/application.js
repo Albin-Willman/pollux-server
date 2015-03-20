@@ -17,27 +17,32 @@
 $(document).ready(function() {
   receiver.addMessageListener();
   
-  $("#take-image-button-native-app").on('click', function(e) {
+  $("#take-image-button").on('click', function(e) {
     e.preventDefault();
-    // PolluxDevice.requestImage();
+    PolluxDevice.requestCamera();
   });
 
-
-
-  $("#upload-image-button-native-app").on('click', function(e) {
+  $("#upload-image-button").on('click', function(e) {
     e.preventDefault();
-    //not implemented yet
-    // PolluxDevice.uploadImage();
+    PolluxDevice.requestImage();
   });
 
   
   $("#button-add-location").on('click', function(e) {
     e.preventDefault();
-    // PolluxDevice.getGeolocation();
-    //not implemented yet
-    // PolluxDevice.uploadImage();
+    PolluxDevice.getGeoLocation();
   });
 });
+
+function showLocation(locationJSON){
+    $("#longitude-location").css("display","block");
+    $("#longitude-location").append(locationJSON.coords.longitude);
+
+    $("#latitude-location").css("display","block");
+    $("#latitude-location").append(locationJSON.coords.latitude);
+
+    // $("#location-div").css("display","block");
+}
 
 function addImgBase64(base64) {
   document.getElementsByTagName('img')[0].src = base64StringToImgSrc(base64);
@@ -46,32 +51,3 @@ function addImgBase64(base64) {
 function base64StringToImgSrc (base64String) {
     return 'data:image/jpeg;base64,' + base64String;
 }
-
-
-
-// To be deleted
-/*function showPairedBluetoothDevices(pairedBluetoothDevices){
-  addJSONStringToList(pairedBluetoothDevices, "bluetoothPairedList");
-}
-function foundBluetoothDevices(foundBluetoothDevice){
-  addJSONStringToList(foundBluetoothDevice, "bluetoothDeviceList");
-}
-function showDeviceInfo(deviceInfo) {
-  addJSONStringToList(deviceInfo, "deviceInfoList");
-}
-function addJSONStringToList(aJSONString, id){
-  var aJSON = JSON.parse(aJSONString);
-  
-  var createListElement = function(infoType, value, listId) {
-    var list  = document.getElementById(listId);
-    var listElement = document.createElement('li');
-    listElement.appendChild(document.createTextNode(infoType + ': ' + value));
-    list.appendChild(listElement);
-  }
-  for (var key in aJSON) {
-    if (aJSON.hasOwnProperty(key)) {
-      var val = aJSON[key];
-      createListElement(key, val, id);
-    }
-  } 
-}*/
