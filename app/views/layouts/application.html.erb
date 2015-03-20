@@ -2,12 +2,19 @@
 <html>
 <head>
   <title>PolluxServer</title>
+  
   <%= stylesheet_link_tag    'application' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
 </head>
 <body>
 
-<%= yield :content %>
+<div class="container">
+	<%= yield :content %>
+</div>
+
 </body>
 </html>

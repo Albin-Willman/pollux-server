@@ -1,9 +1,57 @@
 <% content_for :content do %>
 
-  <h1 id="received-message">Message: </h1>
+<div class="page-header">
+  <h1>Food blog <small>Tell me about your latest meal</small></h1>
+</div>
+
+<form>
+  <div class="form-group">
+    <label>Describe your meal</label>
+    <textarea class="form-control" rows="3"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputFile">Image of the meal</label>
+    <div id="image-webclient">
+      <input type="file" id="exampleInputFile">
+      <p class="help-block">Press to upload an image</p>
+    </div>
+    <div class="row" id="image-native-app" style="display: none">
+      <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+          <img src="" id="image-native-app">
+          <div class="caption">
+            <h3>Photo of your meal</h3>
+            <p>Simply press the "Take photo" button to take a photo with your phone</p>
+            <p><a href="#" class="btn btn-default" role="button" id="image-button-native-app">Take photo</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+  <div id="location-webclient">
+    <label for="mealType">Add your location</label>
+    <input type="text" class="form-control">
+  </div>
+  <div id="location-native-app" style="display: none">
+    <label for="mealType">Add your location</label>
+    <button class="btn btn-default" type="button" id="">Add location</button>
+    <p class="help-block">Press to add your location</p>
+    <p class="lead" style="display: none" id="p-location-native-app"></p>
+  </div>
+
+  </div>
+  <button type="submit" class="btn btn-default">Submit to food blog</button>
+</form>
+
+  <!-- <h1 id="received-message">Message: </h1>
   <button type="button" id="js-send-message">Send message to phonegap</button> 
   <img src="">
   <input type="button" value="Request image" id="js-request-image" />
+ -->
+
+
+
   <!-- <h1>Welcome to pollux start page</h1>
   <h2 id="phonegap-msg"></h2>
   <h2>JS methods</h2>
