@@ -7,7 +7,7 @@ var receiver = {
 	messageReceived: function(event){
 		console.log("webclient receiver: messageReceived > " + event.data);
 
-		/*var eventJSON = event.data;
+		var eventJSON = event.data; // Add typeof check for stability?
 		if(eventJSON.type === "camera"){
 			addImageBase64(eventJSON.image);
 			console.log("webclient receiver: event type camera");
@@ -15,6 +15,6 @@ var receiver = {
 			setPhoneGapDevice();
 		} else{
 			console.log("webclient receiver: event type not found");
-		}*/
+		}
 	}
 }
