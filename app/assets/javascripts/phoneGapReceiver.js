@@ -8,9 +8,9 @@ var receiver = {
 		console.log("webclient receiver: messageReceived - " + event.data);
 		console.log("webclient receiver: messageReceived - " + event.data.type);
 
-		var eventJSON = event.data; // Add typeof check for stability?
+		var eventJSON = JSON.parse(event.data); // Add typeof check for stability?
 		if(eventJSON.type === "camera"){
-			addImageBase64(eventJSON.image);
+			addImageBase64(eventJSON.image);	
 			console.log("webclient receiver: event type camera");
 		} else if(eventJSON.type === "phonegap"){
 			setPhoneGapDevice();
