@@ -15,7 +15,7 @@ var sender = {
 			"type": "image"
 		};
 		this.sendMessage(requestImageJSON);
-	}
+	},
 
 	requestGeolocation: function () {
 		var requestGeolocationJSON = {
