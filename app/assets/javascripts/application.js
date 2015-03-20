@@ -52,7 +52,11 @@ function foundBluetoothDevices(foundBluetoothDevice){
 }
 
 function addImgBase64(base64) {
-  document.getElementsByTagName('img')[0].src = Pollux.base64StringToImgSrc(base64);
+  document.getElementsByTagName('img')[0].src = base64StringToImgSrc(base64);
+}
+
+function base64StringToImgSrc (base64String) {
+    return 'data:image/jpeg;base64,' + base64String;
 }
 
 function showDeviceInfo(deviceInfo) {
