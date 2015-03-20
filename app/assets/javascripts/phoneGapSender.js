@@ -1,6 +1,7 @@
 var sender = {
 	sendMessage: function(reqJSON){
-		window.postMessage(JSON.stringify(reqJSON), "file://");
+		console.log("Pollux server, phoneGapSender.js, sendMessage: " + JSON.stringify(reqJSON));
+		window.parent.postMessage(JSON.stringify(reqJSON), "file://");
 	},
 
 	requestImage: function(){
