@@ -45,7 +45,7 @@ function showLocation(locationJSON){
 }
 
 function addImgBase64(base64) {
-  document.getElementsByTagName('img')[0].src = base64StringToImgSrc(base64);
+  $('#image').src = base64StringToImgSrc(base64);
 }
 
 function base64StringToImgSrc (base64String) {
