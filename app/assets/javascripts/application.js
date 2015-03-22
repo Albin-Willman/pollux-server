@@ -27,11 +27,6 @@ function debug(msg) {
 $(document).ready(function() {
   var localMediaStream = null;
 
-  $('#take-picture').on('click', function(e) {
-    e.preventDefault();
-    Pollux.device.requestCamera('addImgBase64');
-  });
-
   $('#upload-image').on('click', function(e) {
     e.preventDefault();
     Pollux.device.requestImage('addImgBase64');

@@ -19,6 +19,7 @@
 }
 
 .video-overlay {
+  color: white;
   opacity: 0.8;
   position: absolute;
   bottom: 0;
