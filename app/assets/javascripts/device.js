@@ -77,9 +77,9 @@
     self.deviceType = 'phonegap';
     self.phonegap   = window.parent;
 
-    self.requestCamera = function() {
+    self.requestCamera = function(callbackName) {
       debug('webclient, bridge: requestCamera');
-      self.send('camera');
+      self.send('camera', callbackName);
     };
 
     self.requestImage = function(callbackName) {
@@ -98,8 +98,8 @@
 
     self.send = function(requestType, callbackName) {
       var jsonRequest = JSON.stringify({
-        type:     requestType,
-        callback: callbackName
+        type:         requestType,
+        callbackName: callbackName
       });
       self.phonegap.postMessage(jsonRequest, 'file://');
     };
@@ -112,20 +112,16 @@
     var self        = this;
     self.deviceType = 'web';
 
-    self.requestCamera = function() {
-      alert('Not supported yet');
-    };
+    navigator.getUserMedia = (navigator.getUserMedia       ||
+                              navigator.webkitGetUserMedia ||
+                              navigator.mozGetUserMedia    ||
+                              navigator.msGetUserMedia);
 
     self.requestImage = function() {
       alert('Not supported yet');
     };
 
     self.streamVideo = function(callback) {
-      navigator.getUserMedia = (navigator.getUserMedia       ||
-                                navigator.webkitGetUserMedia ||
-                                navigator.mozGetUserMedia    ||
-                                navigator.msGetUserMedia);
-
       if (navigator.getUserMedia) {
         navigator.getUserMedia(
           // constraints
@@ -134,9 +130,10 @@
             audio: false
           },
           // successCallback
-          function(localMediaStream) {
-            var src = window.URL.createObjectURL(localMediaStream);
-            callback(src);
+          function(stream) {
+            var vendorUrl = window.URL || window.webkitURL;
+            var src       = vendorUrl.createObjectURL(stream);
+            callback(src, stream);
           },
           // errorCallback
           function(err) {

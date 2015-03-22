@@ -15,7 +15,8 @@
       <div class="form-group">
         <label>Image of the meal</label>
         <div class="thumbnail">
-          <img src="" id="image">
+          <canvas style="display: none;" width="320" height="160" id="captured-image-canvas"></canvas>
+          <img src="" id="caputred-image">
           <div class="caption">
             <h3>Photo of your meal</h3>
             <p>Send a photo of your meal</p>
@@ -40,12 +41,20 @@
 </div>
 
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-4">
     <hr>
-    <h3></h3>
+    <h3>Media</h3>
     <p>
       <a href="#" id="capture-webcam" class="btn btn-default">Show video</a>
     </p>
+    <p>
+      <a href="#" id="capture-webcam-image" class="btn btn-default">Take picture</a>
+    </p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <h3>Video</h3>
     <video></video>
   </div>
 </div>

@@ -14,7 +14,6 @@
 //= require jquery_ujs
 //= require_tree .
 
-
 function debug(msg) {
   if (typeof console == 'undefined' || typeof console.log == 'undefined')
     return;
@@ -26,6 +25,11 @@ function debug(msg) {
 }
 
 $(document).ready(function() {
+  var localMediaStream = null;
+  var video  = document.querySelector('video');
+  var canvas = document.querySelector('canvas#captured-image-canvas');
+  var ctx    = canvas.getContext('2d');
+
   $('#take-picture').on('click', function(e) {
     e.preventDefault();
     Pollux.device.requestCamera();
@@ -33,7 +37,7 @@ $(document).ready(function() {
 
   $('#upload-image').on('click', function(e) {
     e.preventDefault();
-    Pollux.device.requestImage();
+    Pollux.device.requestImage('addImgBase64');
   });
 
   $('#add-location').on('click', function(e) {
@@ -43,13 +47,47 @@ $(document).ready(function() {
 
   $('#capture-webcam').on('click', function(event) {
     event.preventDefault();
-    Pollux.device.streamVideo(function(src) {
-       var video = document.querySelector('video');
-       video.src = src;
-       video.play();
+    initVideo(function(localVideo, stream) {
+      video            = video;
+      localMediaStream = stream;
     });
   });
+
+   var cameraSnapshot = function() {
+    var setImage = function(video) {
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+      // "image/webp" works in Chrome, other browsers will fall back to image/png.
+      document.querySelector('#caputred-image').src = canvas.toDataURL('image/webp');
+    };
+
+    if (localMediaStream) {
+      setImage(video);
+    } else {
+      initVideo(function(video, stream) {
+        video            = video;
+        localMediaStream = stream;
+        setImage(video);
+      });
+    }
+  }
+
+  $('#capture-webcam-image').on('click', function(e) {
+    e.preventDefault();
+    cameraSnapshot();
+  });
 });
+
+function initVideo(callback) {
+  Pollux.device.streamVideo(function(src, stream) {
+    var video = document.querySelector('video');
+    video.src = src;
+    video.play();
+
+    if (typeof callback === 'function') {
+      callback(video, stream);
+    }
+  });
+}
 
 function showLocation(locationJSON){
   var setLocationDataPoint = function($element, dataPoint) {
@@ -63,7 +101,7 @@ function showLocation(locationJSON){
 
 function addImgBase64(base64) {
   debug('web client, application.js, function: addImgBase64');
-  $('#image').attr('src', base64StringToImgSrc(base64));
+  $('#caputred-image').attr('src', base64StringToImgSrc(base64));
 }
 
 function base64StringToImgSrc (base64String) {
