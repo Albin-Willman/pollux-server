@@ -93,7 +93,7 @@
     };
 
     self.deviceCallback = function(data, callbackName) {
-      executeFunctionByName(callbackName, window, data)
+      executeFunctionByName(callbackName, window, data);
     };
 
     self.send = function(requestType, callbackName) {
@@ -119,6 +119,44 @@
 
     self.requestImage = function() {
       alert('Not supported yet');
+    };
+
+    self.requestCamera = function(callbackName) {
+      var id      = 'captured-image-canvas';
+      var canvas  = document.querySelector(id);
+      var body    = null;
+      var element = null;
+      var ctx     = null;
+
+      if (canvas === null) {
+        body   = document.querySelector('body');
+        canvas = document.createElement('canvas');
+        canvas.id            = id;
+        canvas.style.display = 'none';
+        body.appendChild(canvas);
+      }
+      ctx = canvas.getContext('2d');
+
+      var takePicture = function(video) {
+        var id      = 'capture-from-video';
+        var overlay = '<a href="#" class="video-overlay" id="' + id + '">Capture</a>';
+
+        $(video).after(overlay);
+        $('#' + id).click(function(e) {
+          e.preventDefault();
+          ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+          // "image/webp" works in Chrome, other browsers will fall back to image/png.
+          executeFunctionByName(callbackName, window, canvas.toDataURL('image/webp'));
+        });
+      };
+
+      self.streamVideo(function(src, stream) {
+        var video = document.querySelector('#captured-video');
+        video.src = src;
+        video.play();
+
+        takePicture(video);
+      });
     };
 
     self.streamVideo = function(callback) {

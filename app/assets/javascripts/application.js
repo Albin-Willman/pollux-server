@@ -26,13 +26,10 @@ function debug(msg) {
 
 $(document).ready(function() {
   var localMediaStream = null;
-  var video  = document.querySelector('video');
-  var canvas = document.querySelector('canvas#captured-image-canvas');
-  var ctx    = canvas.getContext('2d');
 
   $('#take-picture').on('click', function(e) {
     e.preventDefault();
-    Pollux.device.requestCamera();
+    Pollux.device.requestCamera('addImgBase64');
   });
 
   $('#upload-image').on('click', function(e) {
@@ -45,49 +42,20 @@ $(document).ready(function() {
     Pollux.device.getGeoLocation();
   });
 
-  $('#capture-webcam').on('click', function(event) {
-    event.preventDefault();
-    initVideo(function(localVideo, stream) {
-      video            = video;
-      localMediaStream = stream;
+  $('#capture-webcam').on('click', function(e) {
+    e.preventDefault();
+    Pollux.device.streamVideo(function(src, stream) {
+      var video = document.querySelector('#captured-video');
+      video.src = src;
+      video.play();
     });
   });
 
-   var cameraSnapshot = function() {
-    var setImage = function(video) {
-      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-      // "image/webp" works in Chrome, other browsers will fall back to image/png.
-      document.querySelector('#caputred-image').src = canvas.toDataURL('image/webp');
-    };
-
-    if (localMediaStream) {
-      setImage(video);
-    } else {
-      initVideo(function(video, stream) {
-        video            = video;
-        localMediaStream = stream;
-        setImage(video);
-      });
-    }
-  }
-
-  $('#capture-webcam-image').on('click', function(e) {
+  $('#capture-webcam-image').click(function(e) {
     e.preventDefault();
-    cameraSnapshot();
+    Pollux.device.requestCamera('addImgBase64');
   });
 });
-
-function initVideo(callback) {
-  Pollux.device.streamVideo(function(src, stream) {
-    var video = document.querySelector('video');
-    video.src = src;
-    video.play();
-
-    if (typeof callback === 'function') {
-      callback(video, stream);
-    }
-  });
-}
 
 function showLocation(locationJSON){
   var setLocationDataPoint = function($element, dataPoint) {
@@ -101,9 +69,11 @@ function showLocation(locationJSON){
 
 function addImgBase64(base64) {
   debug('web client, application.js, function: addImgBase64');
-  $('#caputred-image').attr('src', base64StringToImgSrc(base64));
-}
-
-function base64StringToImgSrc (base64String) {
-  return 'data:image/jpeg;base64,' + base64String;
+  var imageData = null;
+  if (base64.substring(0, 10) === 'data:image') {
+    imageData = base64;
+  } else {
+    imageData = 'data:image/jpeg;base64,' + base64;
+  }
+  $('#caputred-image').attr('src', imageData);
 }

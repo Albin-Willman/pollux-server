@@ -13,3 +13,25 @@
  *= require_tree .
  *= require_self
  */
+
+.video-area {
+
+}
+
+.video-overlay {
+  opacity: 0.8;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  color: #FFF;
+  text-align: center;
+  font-size: 20px;
+  background-color: rgba(221, 221, 221, 0.3);
+  min-width: 280px;
+  padding: 10px 0;
+  z-index: 2147483647;
+}
+
+.video-overlay:hover {
+  color: white;
+}
