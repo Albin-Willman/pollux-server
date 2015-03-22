@@ -14,41 +14,58 @@
 //= require jquery_ujs
 //= require_tree .
 
+
+function debug(msg) {
+  if (typeof console == 'undefined' || typeof console.log == 'undefined')
+    return;
+
+  if (typeof msg !== 'string' && typeof JSON !== 'undefined')
+    msg = JSON.stringify(msg);
+
+  console.log('DEBUG: ' + msg);
+}
+
 $(document).ready(function() {
-  receiver.addMessageListener();
-  
-  $("#take-image-button").on('click', function(e) {
+  $('#take-picture').on('click', function(e) {
     e.preventDefault();
-    PolluxDevice.requestCamera();
+    Pollux.device.requestCamera();
   });
 
-  $("#upload-image-button").on('click', function(e) {
+  $('#upload-image').on('click', function(e) {
     e.preventDefault();
-    PolluxDevice.requestImage();
+    Pollux.device.requestImage();
   });
 
-  
-  $("#button-add-location").on('click', function(e) {
+  $('#add-location').on('click', function(e) {
     e.preventDefault();
-    PolluxDevice.getGeoLocation();
+    Pollux.device.getGeoLocation();
+  });
+
+  $('#capture-webcam').on('click', function(event) {
+    event.preventDefault();
+    Pollux.device.streamVideo(function(src) {
+       var video = document.querySelector('video');
+       video.src = src;
+       video.play();
+    });
   });
 });
 
 function showLocation(locationJSON){
-    $("#longitude-location").css("display","block");
-    $("#longitude-location").append(locationJSON.coords.longitude);
+  var setLocationDataPoint = function($element, dataPoint) {
+    $element.show();
+    $element.append(dataPoint);
+  };
 
-    $("#latitude-location").css("display","block");
-    $("#latitude-location").append(locationJSON.coords.latitude);
-
-    // $("#location-div").css("display","block");
+  setLocationDataPoint($('#longitude-location'), locationJSON.coords.longitude);
+  setLocationDataPoint($('#latitude-location'), locationJSON.coords.latitude);
 }
 
 function addImgBase64(base64) {
-  console.log("web client, application.js, function: addImgBase64");
-  $('#image').attr("src", base64StringToImgSrc(base64));
+  debug('web client, application.js, function: addImgBase64');
+  $('#image').attr('src', base64StringToImgSrc(base64));
 }
 
 function base64StringToImgSrc (base64String) {
-    return 'data:image/jpeg;base64,' + base64String;
+  return 'data:image/jpeg;base64,' + base64String;
 }

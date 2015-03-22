@@ -1,48 +1,190 @@
+(function (window) {
+  'use strict';
 
-var PhoneGapDeviceAdapter = function() {
-  this.deviceType = 'phonegap';
-
-  this.requestCamera = function() {
-    bridge.requestCamera();
+  var adapterCallback = function(context, callback) {
+    if (typeof callback === 'function') {
+      callback(context);
+    }
   };
 
-  this.requestImage = function(){
-    bridge.requestImage();
+  var executeFunctionByName = function(functionName, context /*, args */) {
+    var args       = [].slice.call(arguments).splice(2);
+    var namespaces = functionName.split('.');
+    var func       = namespaces.pop();
+    for(var i = 0; i < namespaces.length; i++) {
+      context = context[namespaces[i]];
+    }
+    return context[func].apply(this, args);
+  }
+
+  var debug = function(msg) {
+    if (typeof console == 'undefined' || typeof console.log == 'undefined') {
+      return;
+    }
+
+    if (typeof msg !== 'string' && typeof JSON !== 'undefined') {
+      msg = JSON.stringify(msg);
+    }
+
+    console.log('DEBUG: ' + msg);
   };
 
-  this.getGeoLocation = function() {
-    bridge.getGeolocation();
-  };
-  return this;
-};
+  var PolluxDeviceFactory = function() {
+    var device = null;
 
-var WebDeviceAdapter = function() {
-  this.deviceType = 'web';
+    if (typeof Android !== 'undefined') {
+      debug('Running on a native Android device.');
+      device = new AndroidDeviceAdapter();
+    } else {
+      debug('Running in webbrowser');
+      device = new WebDeviceAdapter();
+    }
 
-  this.requestCamera = function() {
-    alert('Not supported yet');
-  };
-
-  this.requestImage = function(){
-    alert('Not supported yet');
+    return device;
   };
 
-  this.getGeoLocation = function(callback) {
-    alert('Not supported yet');
-    // navigator.geolocation.getCurrentPosition(function(geoLocation){
-    //   callback(JSON.stringify(geoLocation.coords));
-    // });
+  var AndroidDeviceAdapter = function(callback) {
+    var self        = this;
+    self.client     = Android;
+    self.deviceType = 'android';
+
+    self.showToast = function(msg) {
+      self.client.showToast(msg);
+    };
+
+    self.requestImage = function() {
+      self.client.requestImage();
+    };
+
+    self.showDeviceInfo = function() {
+      showDeviceInfo(self.client.getDeviceInfo());
+    };
+
+    self.getGeoLocation = function() {
+      return '{ error: "Not implemented yet!" }'
+    };
+
+    self.discoverBluetoothDevices = function() {
+      self.client.discoverBluetoothDevices();
+    };
+
+    adapterCallback(self, callback);
+    return self;
   };
-  return this;
-};
 
-// Called when running on PhoneGap
-function setPhoneGapDevice(){
-  PolluxDevice = new PhoneGapDeviceAdapter();
-  console.log("web client, device: device set to PhoneGapDevice");
-  
-  //show right styling on the blog 
-  $("#take-image-button").css("display","block");
-}
+  var PhoneGapDeviceAdapter = function(callback) {
+    var self        = this;
+    self.deviceType = 'phonegap';
+    self.phonegap   = window.parent;
 
-var PolluxDevice = new WebDeviceAdapter(); // PolluxDevice defaults to WebDeviceAdapter
+    self.requestCamera = function() {
+      debug('webclient, bridge: requestCamera');
+      self.send('camera');
+    };
+
+    self.requestImage = function(callbackName) {
+      debug('webclient, bridge: requestImage');
+      self.send('image', callbackName);
+    };
+
+    self.getGeoLocation = function(callbackName) {
+      debug('webclient, bridge: getGeolocation');
+      self.send('geolocation', callbackName);
+    };
+
+    self.deviceCallback = function(data, callbackName) {
+      executeFunctionByName(callbackName, window, data)
+    };
+
+    self.send = function(requestType, callbackName) {
+      var jsonRequest = JSON.stringify({
+        type:     requestType,
+        callback: callbackName
+      });
+      self.phonegap.postMessage(jsonRequest, 'file://');
+    };
+
+    adapterCallback(self, callback);
+    return self;
+  };
+
+  var WebDeviceAdapter = function(callback) {
+    var self        = this;
+    self.deviceType = 'web';
+
+    self.requestCamera = function() {
+      alert('Not supported yet');
+    };
+
+    self.requestImage = function() {
+      alert('Not supported yet');
+    };
+
+    self.streamVideo = function(callback) {
+      navigator.getUserMedia = (navigator.getUserMedia       ||
+                                navigator.webkitGetUserMedia ||
+                                navigator.mozGetUserMedia    ||
+                                navigator.msGetUserMedia);
+
+      if (navigator.getUserMedia) {
+        navigator.getUserMedia(
+          // constraints
+          {
+            video: true,
+            audio: false
+          },
+          // successCallback
+          function(localMediaStream) {
+            var src = window.URL.createObjectURL(localMediaStream);
+            callback(src);
+          },
+          // errorCallback
+          function(err) {
+            debug('The following error occured: ' + err);
+          }
+        );
+      } else {
+         debug('getUserMedia not supported');
+      }
+    };
+
+    self.getGeoLocation = function(callback) {
+      navigator.geolocation.getCurrentPosition(function(geoLocation){
+        callback(JSON.stringify(geoLocation.coords));
+      });
+    };
+
+    adapterCallback(self, callback);
+    return self;
+  };
+
+  var Pollux = function(device) {
+    var self    = this;
+    self.device = null;
+
+     // Called when running on PhoneGap
+    self.setDevice = function(deviceName, callback) {
+      if (deviceName === 'phonegap') {
+        self.device = new PhoneGapDeviceAdapter(callback);
+        debug('web client, device: set to PhoneGapDevice');
+      } else if (deviceName === 'web') {
+        self.device = new WebDeviceAdapter(callback);
+        debug('web client, device: set to WebDevice');
+      } else if (deviceName === 'android') {
+        self.device = new AndroidDeviceAdapter(callback);
+        debug('web client, device: set to AndroidDevice');
+      }
+      return self.device;
+    };
+
+    if (device === undefined) {
+      self.device = new PolluxDeviceFactory();
+    } else {
+      self.device = self.setDevice(device);
+    };
+
+    return self;
+  };
+
+  window.Pollux = new Pollux();
+}(window));
