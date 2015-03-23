@@ -129,7 +129,9 @@
       }
       ctx = canvas.getContext('2d');
       
+      debug("before streamVideo");
       streamVideo(function(src, stream) {
+        debug("streamVideo callback");
         var video = document.querySelector('#captured-video');
         video.src = src;
         video.play();
@@ -138,6 +140,7 @@
       });
 
       var takePicture = function(video) {
+        debug("within takePicture");
         overlay("Capture", "capture-from-video", function(){
           ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
           self.deviceCallback(canvas.toDataURL('image/webp'), callbackName);
@@ -146,6 +149,7 @@
 
 
       var streamVideo = function(callback){
+        debug("wihin streamVideo");
         if (navigator.getUserMedia) {
           navigator.getUserMedia(
             // constraints
@@ -155,6 +159,7 @@
             },
             // successCallback
             function(stream) {
+              debug("within stremvideo success");
               var vendorUrl = window.URL || window.webkitURL;
               var src       = vendorUrl.createObjectURL(stream);
               callback(src, stream);
@@ -170,10 +175,7 @@
       };
 
       var overlay = function(overlayText, id, callback){
-        debug("overlayText: " + overlayText);
-        debug("id: " + id);
-        // debug("callback: " + callback);
-        debug("callback: " + (typeof callback !== 'undefined'));
+        debug("within overlay");
 
         var id         = id;
         var overlayTag = '<a href="#" class="video-overlay" id="' + id + '">' + overlayText + '</a>';
