@@ -167,7 +167,7 @@
         } else {
            debug('getUserMedia not supported');
         }
-      }
+      };
 
       var overlay = function(overlayText, id, callback){
         debug("overlayText: " + overlayText);
@@ -188,6 +188,7 @@
           $('#' + id).remove();
         });
       };
+      
     };
 
     // self.streamVideo = function(callback) {
