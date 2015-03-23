@@ -152,7 +152,8 @@
           // "image/webp" works in Chrome, other browsers will fall back to image/png.
           // executeFunctionByName(callbackName, window, canvas.toDataURL('image/webp'));
           self.deviceCallback(canvas.toDataURL('image/webp'), callbackName);
-          video.end();
+          video.src="";
+          // video.end();
         });
       };
 
