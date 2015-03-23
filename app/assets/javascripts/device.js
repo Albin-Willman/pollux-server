@@ -155,32 +155,58 @@
 
         takePicture(video);
       });
+
+      var streamVideo = function(callback){
+        if (navigator.getUserMedia) {
+          navigator.getUserMedia(
+            // constraints
+            {
+              video: true,
+              audio: false
+            },
+            // successCallback
+            function(stream) {
+              var vendorUrl = window.URL || window.webkitURL;
+              var src       = vendorUrl.createObjectURL(stream);
+              callback(src, stream);
+              // overlay("Stop video", "stop-video");
+            },
+            // errorCallback
+            function(err) {
+              debug('The following error occured: ' + err);
+            }
+          );
+        } else {
+           debug('getUserMedia not supported');
+        }
+      }
+
     };
 
-    self.streamVideo = function(callback) {
-      if (navigator.getUserMedia) {
-        navigator.getUserMedia(
-          // constraints
-          {
-            video: true,
-            audio: false
-          },
-          // successCallback
-          function(stream) {
-            var vendorUrl = window.URL || window.webkitURL;
-            var src       = vendorUrl.createObjectURL(stream);
-            callback(src, stream);
-            // overlay("Stop video", "stop-video");
-          },
-          // errorCallback
-          function(err) {
-            debug('The following error occured: ' + err);
-          }
-        );
-      } else {
-         debug('getUserMedia not supported');
-      }
-    };
+    // self.streamVideo = function(callback) {
+    //   if (navigator.getUserMedia) {
+    //     navigator.getUserMedia(
+    //       // constraints
+    //       {
+    //         video: true,
+    //         audio: false
+    //       },
+    //       // successCallback
+    //       function(stream) {
+    //         var vendorUrl = window.URL || window.webkitURL;
+    //         var src       = vendorUrl.createObjectURL(stream);
+    //         callback(src, stream);
+    //         // overlay("Stop video", "stop-video");
+    //       },
+    //       // errorCallback
+    //       function(err) {
+    //         debug('The following error occured: ' + err);
+    //       }
+    //     );
+    //   } else {
+    //      debug('getUserMedia not supported');
+    //   }
+    // };
 
     self.getGeoLocation = function(callbackName) {
       navigator.geolocation.getCurrentPosition(function(geolocation){
