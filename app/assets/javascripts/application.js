@@ -40,7 +40,15 @@ $(document).ready(function() {
   $('#add-location').on('click', function(e) {
     e.preventDefault();
     Pollux.device.getGeoLocation(function(geolocation){
-      console.log(geolocation.longitude);
+
+    var displayLocation = function($element, coordinateType){
+      $element.css("display","block");
+      $element.empty();
+      $element.append(coordinateType + ": " + geolocation.latitude);
+    }
+    displayLocation($("#latitude-location"), "Latitude");
+    displayLocation($("#longitude-location"), "Longitude");
+    
     });
   });
 
