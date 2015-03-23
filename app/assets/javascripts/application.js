@@ -64,9 +64,9 @@ function overlay(overlayText, id, callback){
   debug("callback: " + callback);
 
   var id      = id;
-  var overlay = '<a href="#" class="video-overlay" id="' + id + '">' + overlayText + '</a>';
+  var overlayTag = '<a href="#" class="video-overlay" id="' + id + '">' + overlayText + '</a>';
   var video = document.querySelector('#' + id);
-  $(video).after(overlay);
+  $(video).after(overlayTag);
   $('#' + id).click(function(e) {
     if(callback !== 'undefined'){
       callback();
