@@ -116,7 +116,6 @@
     self.requestCamera = function(callbackName) {
       
       var takePicture = function(video) {
-        debug("within takePicture");
         overlay("Capture", "capture-from-video", function(){
           ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
           self.deviceCallback(canvas.toDataURL('image/webp'), callbackName);
@@ -124,7 +123,6 @@
       };
 
       var streamVideo = function(callback){
-        debug("within streamVideo");
         if (navigator.getUserMedia) {
           navigator.getUserMedia(
             // constraints
@@ -134,23 +132,19 @@
             },
             // successCallback
             function(stream) {
-              debug("within stremvideo success");
               var vendorUrl = window.URL || window.webkitURL;
               var src       = vendorUrl.createObjectURL(stream);
               callback(src, stream);
             },
             // errorCallback
             function(err) {
-              debug('The following error occured: ' + err);
             }
           );
         } else {
-           debug('getUserMedia not supported');
         }
       };
 
       var overlay = function(overlayText, id, callback){
-        debug("within overlay");
 
         var id         = id;
         var overlayTag = '<a href="#" class="video-overlay" id="' + id + '">' + overlayText + '</a>';
@@ -181,9 +175,7 @@
       }
       ctx = canvas.getContext('2d');
       
-      debug("before streamVideo");
       streamVideo(function(src, stream) {
-        debug("streamVideo callback");
         var video = document.querySelector('#captured-video');
         video.src = src;
         video.play();
