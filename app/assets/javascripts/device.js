@@ -150,7 +150,9 @@
           e.preventDefault();
           ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
           // "image/webp" works in Chrome, other browsers will fall back to image/png.
-          executeFunctionByName(callbackName, window, canvas.toDataURL('image/webp'));
+          // executeFunctionByName(callbackName, window, canvas.toDataURL('image/webp'));
+          self.deviceCallback(canvas.toDataURL('image/webp'), callbackName);
+          video.end();
         });
       };
 
@@ -189,8 +191,6 @@
 
     self.getGeoLocation = function(callbackName) {
       navigator.geolocation.getCurrentPosition(function(geolocation){
-        // callback(JSON.stringify(geoLocation.coords));
-        // callback(geoLocation.coords);
         self.deviceCallback(geolocation.coords, callbackName);
       });
     };
