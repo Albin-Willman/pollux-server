@@ -188,7 +188,7 @@
     };
 
     self.getGeoLocation = function(callbackName) {
-      navigator.geolocation.getCurrentPosition(function(geoLocation){
+      navigator.geolocation.getCurrentPosition(function(geolocation){
         // callback(JSON.stringify(geoLocation.coords));
         // callback(geoLocation.coords);
         self.deviceCallback(geolocation.coords, callbackName);
