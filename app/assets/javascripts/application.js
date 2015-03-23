@@ -65,7 +65,7 @@ function overlay(overlayText, id, callback){
 
   var id         = id;
   var overlayTag = '<a href="#" class="video-overlay" id="' + id + '">' + overlayText + '</a>';
-  var video      = document.querySelector(#"captured-video");
+  var video      = document.querySelector("#captured-video");
   $(video).after(overlayTag);
   $('#' + id).click(function(e) {
     if(callback !== 'undefined'){

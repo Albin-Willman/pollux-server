@@ -182,6 +182,7 @@
 
  
             overlay("Stop video", "stop-video");
+            
             //  var id      = 'stop-video';
             // var overlay = '<a href="#" class="video-overlay" id="' + id + '">Stop video</a>';
             // var video = document.querySelector('#captured-video');
