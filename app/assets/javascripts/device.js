@@ -220,8 +220,8 @@
     self.getGeoLocation = function(callbackName) {
       navigator.geolocation.getCurrentPosition(function(geolocation){
         var locationJSON = {
-          longitude: geolocation.longitude,
-          latitude: geolocation.latitude
+          longitude: geolocation.coords.longitude,
+          latitude: geolocation.coords.latitude
         };
 
         debug("webdeviceadapter, geolocation Json: " + locationJSON);
