@@ -182,16 +182,16 @@
 
             var id      = 'stop-video';
             var overlay = '<a href="#" class="video-overlay" id="' + id + '">Stop video</a>';
-            $(video).after(overlay);
-              $('#' + id).click(function(e) {
-                e.preventDefault();
-                ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-                // "image/webp" works in Chrome, other browsers will fall back to image/png.
-                // executeFunctionByName(callbackName, window, canvas.toDataURL('image/webp'));
-                // self.deviceCallback(canvas.toDataURL('image/webp'), callbackName);
-                video.src="";
-                $("#stop-video").remove();
-              });
+            $(document.querySelector('#captured-video')).after(overlay);
+            $('#' + id).click(function(e) {
+              e.preventDefault();
+              ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+              // "image/webp" works in Chrome, other browsers will fall back to image/png.
+              // executeFunctionByName(callbackName, window, canvas.toDataURL('image/webp'));
+              // self.deviceCallback(canvas.toDataURL('image/webp'), callbackName);
+              video.src="";
+              $("#stop-video").remove();
+            });
 
 
           },
