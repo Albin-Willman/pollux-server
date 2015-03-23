@@ -191,7 +191,7 @@
       navigator.geolocation.getCurrentPosition(function(geoLocation){
         // callback(JSON.stringify(geoLocation.coords));
         // callback(geoLocation.coords);
-        self.deviceCallback(geolocation, callbackName);
+        self.deviceCallback(geolocation.coords, callbackName);
       });
     };
 
