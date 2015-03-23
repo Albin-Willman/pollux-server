@@ -48,10 +48,6 @@
     self.client     = Android;
     self.deviceType = 'android';
 
-    self.showToast = function(msg) {
-      self.client.showToast(msg);
-    };
-
     self.requestCamera = function(callback) {
       self.client.requestCamera(callback);
     };
@@ -60,16 +56,8 @@
       self.client.requestImage(callback);
     };
 
-    self.showDeviceInfo = function() {
-      showDeviceInfo(self.client.getDeviceInfo());
-    };
-
     self.getGeoLocation = function(callback) {
       self.client.getGeolocation(callback);
-    };
-
-    self.discoverBluetoothDevices = function() {
-      self.client.discoverBluetoothDevices();
     };
 
     adapterCallback(self, callback);
