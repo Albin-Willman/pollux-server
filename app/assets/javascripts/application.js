@@ -59,9 +59,10 @@ $(document).ready(function() {
 });
 
 function overlay(overlayText, id, callback){
-  debug("overlayText: " overlayText);
-  debug("id: " id);
-  debug("callback: " callback);
+  debug("overlayText: " + overlayText);
+  debug("id: " + id);
+  debug("callback: " + callback);
+
   var id      = id;
   var overlay = '<a href="#" class="video-overlay" id="' + id + '">' + overlayText + '</a>';
   var video = document.querySelector('#' + id);
