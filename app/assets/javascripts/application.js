@@ -78,7 +78,8 @@ function overlay(overlayText, id, callback){
   });
 }
 
-function showLocation(locationJSON){
+function showLocation(location){
+  var locationJSON = JSON.parse(location);
   var setLocationDataPoint = function($element, dataPoint) {
     $element.show();
     $element.empty();
