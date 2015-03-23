@@ -52,16 +52,20 @@
       self.client.showToast(msg);
     };
 
-    self.requestImage = function() {
-      self.client.requestImage();
+    self.requestCamera = function(callback) {
+      self.client.requestCamera(callback);
+    };
+
+    self.requestImage = function(callback) {
+      self.client.requestImage(callback);
     };
 
     self.showDeviceInfo = function() {
       showDeviceInfo(self.client.getDeviceInfo());
     };
 
-    self.getGeoLocation = function() {
-      return '{ error: "Not implemented yet!" }'
+    self.getGeoLocation = function(callback) {
+      self.client.getGeolocation(callback);
     };
 
     self.discoverBluetoothDevices = function() {
