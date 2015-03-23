@@ -217,9 +217,14 @@
 
     self.getGeoLocation = function(callbackName) {
       navigator.geolocation.getCurrentPosition(function(geolocation){
-        debug("webdeviceadapter, geolocation Json: " + geolocation.coords);
-        debug("webdeviceadapter, geolocation string: " + JSON.stringify(geolocation.coords));
-        self.deviceCallback(JSON.stringify(geolocation.coords), callbackName);
+        var locationJSON = {
+          longitude: geolocation.longitude,
+          latitude: geolocation.latitude
+        };
+
+        debug("webdeviceadapter, geolocation Json: " + locationJSON);
+        debug("webdeviceadapter, geolocation string: " + JSON.stringify(locationJSON));
+        self.deviceCallback(JSON.stringify(locationJSON), callbackName);
       });
     };
 
