@@ -39,7 +39,6 @@
       debug('Running in webbrowser');
       device = new WebDeviceAdapter();
     }
-
     return device;
   };
 
@@ -49,23 +48,27 @@
     self.deviceType = 'android';
 
     self.showToast = function(msg) {
-      self.client.showToast(msg);
+      return '{ error: "Not implemented yet!" }'
     };
-
-    self.requestImage = function() {
-      self.client.requestImage();
-    };
-
-    self.showDeviceInfo = function() {
-      showDeviceInfo(self.client.getDeviceInfo());
-    };
-
-    self.getGeoLocation = function() {
+    
+    self.requestCamera = function(callback) {
       return '{ error: "Not implemented yet!" }'
     };
 
-    self.discoverBluetoothDevices = function() {
-      self.client.discoverBluetoothDevices();
+    self.requestImage = function(callback) {
+      return '{ error: "Not implemented yet!" }'
+    };
+
+    self.showDeviceInfo = function(callback) {
+      return '{ error: "Not implemented yet!" }'
+    };
+
+    self.getGeoLocation = function(callback) {
+      return '{ error: "Not implemented yet!" }'
+    };
+
+    self.discoverBluetoothDevices = function(callback) {
+      return '{ error: "Not implemented yet!" }'
     };
 
     adapterCallback(self, callback);
