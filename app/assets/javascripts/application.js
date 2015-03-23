@@ -58,25 +58,7 @@ $(document).ready(function() {
   // });
 });
 
-function overlay(overlayText, id, callback){
-  debug("overlayText: " + overlayText);
-  debug("id: " + id);
-  // debug("callback: " + callback);
-  debug("callback: " + (typeof callback !== 'undefined'));
 
-  var id         = id;
-  var overlayTag = '<a href="#" class="video-overlay" id="' + id + '">' + overlayText + '</a>';
-  var video      = document.querySelector("#captured-video");
-  $(video).after(overlayTag);
-  $('#' + id).click(function(e) {
-    if(typeof callback !== 'undefined'){
-      callback();
-    }
-    e.preventDefault();
-    video.src="";
-    $('#' + id).remove();
-  });
-}
 
 function showLocation(location){
   var locationJSON = JSON.parse(location);
