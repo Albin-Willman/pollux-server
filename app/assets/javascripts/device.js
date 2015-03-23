@@ -129,8 +129,7 @@
       } else {
           alert("Please upload a valid image file.");
         }
-      });$.browser.msie
-
+      });
     };
 
     self.requestCamera = function(callbackName) {
