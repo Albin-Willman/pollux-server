@@ -188,7 +188,7 @@
           $('#' + id).remove();
         });
       };
-      
+
     };
 
     // self.streamVideo = function(callback) {
@@ -218,7 +218,8 @@
 
     self.getGeoLocation = function(callbackName) {
       navigator.geolocation.getCurrentPosition(function(geolocation){
-        debug("webdeviceadapter, geolocation string" + JSON.stringify(geolocation.coords));
+        debug("webdeviceadapter, geolocation Json: " + geolocation.coords);
+        debug("webdeviceadapter, geolocation string: " + JSON.stringify(geolocation.coords));
         self.deviceCallback(JSON.stringify(geolocation.coords), callbackName);
       });
     };
