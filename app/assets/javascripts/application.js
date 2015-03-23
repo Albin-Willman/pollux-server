@@ -42,20 +42,6 @@ $(document).ready(function() {
     Pollux.device.getGeoLocation("showLocation");
 
   });
-
-  // $('#capture-webcam').on('click', function(e) {
-  //   e.preventDefault();
-  //   Pollux.device.streamVideo(function(src, stream) {
-  //     var video = document.querySelector('#captured-video');
-  //     video.src = src;
-  //     video.play();
-  //   });
-  // });
-
-  // $('#capture-webcam-image').click(function(e) {
-  //   e.preventDefault();
-  //   Pollux.device.requestCamera('addImgBase64');
-  // });
 });
 
 
@@ -80,5 +66,5 @@ function addImgBase64(base64) {
   } else {
     imageData = 'data:image/jpeg;base64,' + base64;
   }
-  $('#caputred-image').attr('src', imageData);
+  $('#captured-image').attr('src', imageData);
 }

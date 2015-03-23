@@ -184,40 +184,12 @@
       });
     };
 
-    // self.streamVideo = function(callback) {
-    //   if (navigator.getUserMedia) {
-    //     navigator.getUserMedia(
-    //       // constraints
-    //       {
-    //         video: true,
-    //         audio: false
-    //       },
-    //       // successCallback
-    //       function(stream) {
-    //         var vendorUrl = window.URL || window.webkitURL;
-    //         var src       = vendorUrl.createObjectURL(stream);
-    //         callback(src, stream);
-    //         // overlay("Stop video", "stop-video");
-    //       },
-    //       // errorCallback
-    //       function(err) {
-    //         debug('The following error occured: ' + err);
-    //       }
-    //     );
-    //   } else {
-    //      debug('getUserMedia not supported');
-    //   }
-    // };
-
     self.getGeoLocation = function(callbackName) {
       navigator.geolocation.getCurrentPosition(function(geolocation){
         var locationJSON = {
           longitude: geolocation.coords.longitude,
           latitude: geolocation.coords.latitude
         };
-
-        debug("webdeviceadapter, geolocation Json: " + locationJSON);
-        debug("webdeviceadapter, geolocation string: " + JSON.stringify(locationJSON));
         self.deviceCallback(JSON.stringify(locationJSON), callbackName);
       });
     };
