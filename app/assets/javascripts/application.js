@@ -43,14 +43,14 @@ $(document).ready(function() {
 
   });
 
-  $('#capture-webcam').on('click', function(e) {
-    e.preventDefault();
-    Pollux.device.streamVideo(function(src, stream) {
-      var video = document.querySelector('#captured-video');
-      video.src = src;
-      video.play();
-    });
-  });
+  // $('#capture-webcam').on('click', function(e) {
+  //   e.preventDefault();
+  //   Pollux.device.streamVideo(function(src, stream) {
+  //     var video = document.querySelector('#captured-video');
+  //     video.src = src;
+  //     video.play();
+  //   });
+  // });
 
   // $('#capture-webcam-image').click(function(e) {
   //   e.preventDefault();
