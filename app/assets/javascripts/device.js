@@ -114,31 +114,7 @@
     };
 
     self.requestCamera = function(callbackName) {
-      var id      = 'captured-image-canvas';
-      var canvas  = document.querySelector(id);
-      var body    = null;
-      var element = null;
-      var ctx     = null;
-
-      if (canvas === null) {
-        body   = document.querySelector('body');
-        canvas = document.createElement('canvas');
-        canvas.id            = id;
-        canvas.style.display = 'none';
-        body.appendChild(canvas);
-      }
-      ctx = canvas.getContext('2d');
       
-      debug("before streamVideo");
-      streamVideo(function(src, stream) {
-        debug("streamVideo callback");
-        var video = document.querySelector('#captured-video');
-        video.src = src;
-        video.play();
-
-        takePicture(video);
-      });
-
       var takePicture = function(video) {
         debug("within takePicture");
         overlay("Capture", "capture-from-video", function(){
@@ -147,9 +123,8 @@
         });
       };
 
-
       var streamVideo = function(callback){
-        debug("wihin streamVideo");
+        debug("within streamVideo");
         if (navigator.getUserMedia) {
           navigator.getUserMedia(
             // constraints
@@ -190,6 +165,31 @@
           $('#' + id).remove();
         });
       };
+
+      var id      = 'captured-image-canvas';
+      var canvas  = document.querySelector(id);
+      var body    = null;
+      var element = null;
+      var ctx     = null;
+
+      if (canvas === null) {
+        body   = document.querySelector('body');
+        canvas = document.createElement('canvas');
+        canvas.id            = id;
+        canvas.style.display = 'none';
+        body.appendChild(canvas);
+      }
+      ctx = canvas.getContext('2d');
+      
+      debug("before streamVideo");
+      streamVideo(function(src, stream) {
+        debug("streamVideo callback");
+        var video = document.querySelector('#captured-video');
+        video.src = src;
+        video.play();
+
+        takePicture(video);
+      });
     };
 
     // self.streamVideo = function(callback) {
