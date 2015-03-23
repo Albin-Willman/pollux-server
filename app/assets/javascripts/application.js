@@ -39,7 +39,9 @@ $(document).ready(function() {
 
   $('#add-location').on('click', function(e) {
     e.preventDefault();
-    Pollux.device.getGeoLocation();
+    Pollux.device.getGeoLocation(function(geolocation){
+      console.log(geolocation.longitude);
+    });
   });
 
   $('#capture-webcam').on('click', function(e) {
