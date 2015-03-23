@@ -140,6 +140,14 @@
         body.appendChild(canvas);
       }
       ctx = canvas.getContext('2d');
+      
+      streamVideo(function(src, stream) {
+        var video = document.querySelector('#captured-video');
+        video.src = src;
+        video.play();
+
+        takePicture(video);
+      });
 
       var takePicture = function(video) {
         overlay("Capture", "capture-from-video", function(){
@@ -148,13 +156,6 @@
         });
       };
 
-      self.streamVideo(function(src, stream) {
-        var video = document.querySelector('#captured-video');
-        video.src = src;
-        video.play();
-
-        takePicture(video);
-      });
 
       var streamVideo = function(callback){
         if (navigator.getUserMedia) {
