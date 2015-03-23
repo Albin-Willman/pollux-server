@@ -52,10 +52,10 @@ $(document).ready(function() {
     });
   });
 
-  $('#capture-webcam-image').click(function(e) {
-    e.preventDefault();
-    Pollux.device.requestCamera('addImgBase64');
-  });
+  // $('#capture-webcam-image').click(function(e) {
+  //   e.preventDefault();
+  //   Pollux.device.requestCamera('addImgBase64');
+  // });
 });
 
 function overlay(overlayText, id, callback){
