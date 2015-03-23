@@ -79,5 +79,5 @@ Rails.application.configure do
 
 
 
-  config.assets.debug = turned
+  config.assets.debug = true
 end
