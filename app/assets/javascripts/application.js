@@ -34,7 +34,7 @@ $(document).ready(function() {
 
   $('#upload-image').on('click', function(e) {
     e.preventDefault();
-    Pollux.device.requestImage('addImgBase64');
+    Pollux.device.uploadImage('addImgBase64');
   });
 
   $('#add-location').on('click', function(e) {

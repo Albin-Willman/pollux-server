@@ -109,8 +109,8 @@
                               navigator.mozGetUserMedia    ||
                               navigator.msGetUserMedia);
 
-    self.requestImage = function() {
-      alert('Not supported yet');
+    self.uploadImage = function() {
+      $('#fileUpload').click();
     };
 
     self.requestCamera = function(callbackName) {
