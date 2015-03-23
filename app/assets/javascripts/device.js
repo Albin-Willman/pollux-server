@@ -180,17 +180,18 @@
             var src       = vendorUrl.createObjectURL(stream);
             callback(src, stream);
 
-            var id      = 'stop-video';
-            var overlay = '<a href="#" class="video-overlay" id="' + id + '">Stop video</a>';
-            var video = document.querySelector('#captured-video');
-            $(video).after(overlay);
-            $('#' + id).click(function(e) {
-              e.preventDefault();
-              video.src="";
-              $("#stop-video").remove();
-            });
+ 
+            overlay("Stop video", "stop-video");
+            // var id      = 'stop-video';
+            // var overlay = '<a href="#" class="video-overlay" id="' + id + '">Stop video</a>';
+            // var video = document.querySelector('#captured-video');
+            // $(video).after(overlay);
+            // $('#' + id).click(function(e) {
 
-
+            //   e.preventDefault();
+            //   video.src="";
+            //   $("#stop-video").remove();
+            // });
           },
           // errorCallback
           function(err) {

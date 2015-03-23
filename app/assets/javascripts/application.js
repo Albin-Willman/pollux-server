@@ -58,16 +58,20 @@ $(document).ready(function() {
   });
 });
 
-// function(geolocation){
-
-//   var displayLocation = function($element, coordinateType){
-//     $element.css("display","block");
-//     $element.empty();
-//     $element.append(coordinateType + ": " + geolocation.latitude);
-//   }
-//   displayLocation($("#latitude-location"), "Latitude");
-//   displayLocation($("#longitude-location"), "Longitude");
-// }
+function overlay(overlayText, id, callback){
+  var id      = id;
+  var overlay = '<a href="#" class="video-overlay" id="' + id + '">' + overlayText + '</a>';
+  var video = document.querySelector('#' + id);
+  $(video).after(overlay);
+  $('#' + id).click(function(e) {
+    if(callback !== 'undefined'){
+      callback();
+    }
+    e.preventDefault();
+    video.src="";
+    $('#' + id).remove();
+  });
+}
 
 function showLocation(locationJSON){
   var setLocationDataPoint = function($element, dataPoint) {
