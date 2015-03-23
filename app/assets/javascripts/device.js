@@ -153,7 +153,7 @@
           // executeFunctionByName(callbackName, window, canvas.toDataURL('image/webp'));
           self.deviceCallback(canvas.toDataURL('image/webp'), callbackName);
           video.src="";
-          // video.end();
+          $("#capture-from-video").remove();
         });
       };
 
