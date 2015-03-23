@@ -39,7 +39,7 @@ $(document).ready(function() {
 
   $('#add-location').on('click', function(e) {
     e.preventDefault();
-    Pollux.device.getGeoLocation(showLocation);
+    Pollux.device.getGeoLocation("showLocation");
 
   });
 
