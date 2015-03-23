@@ -188,7 +188,6 @@
           $('#' + id).remove();
         });
       };
-
     };
 
     // self.streamVideo = function(callback) {
