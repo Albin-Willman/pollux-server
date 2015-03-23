@@ -39,7 +39,8 @@ $(document).ready(function() {
 
   $('#add-location').on('click', function(e) {
     e.preventDefault();
-    Pollux.device.getGeoLocation();
+    Pollux.device.getGeoLocation(showLocation);
+
   });
 
   $('#capture-webcam').on('click', function(e) {
@@ -57,14 +58,26 @@ $(document).ready(function() {
   });
 });
 
+// function(geolocation){
+
+//   var displayLocation = function($element, coordinateType){
+//     $element.css("display","block");
+//     $element.empty();
+//     $element.append(coordinateType + ": " + geolocation.latitude);
+//   }
+//   displayLocation($("#latitude-location"), "Latitude");
+//   displayLocation($("#longitude-location"), "Longitude");
+// }
+
 function showLocation(locationJSON){
   var setLocationDataPoint = function($element, dataPoint) {
     $element.show();
+    $element.empty();
     $element.append(dataPoint);
   };
 
-  setLocationDataPoint($('#longitude-location'), locationJSON.coords.longitude);
-  setLocationDataPoint($('#latitude-location'), locationJSON.coords.latitude);
+  setLocationDataPoint($('#longitude-location'), locationJSON.longitude);
+  setLocationDataPoint($('#latitude-location'), locationJSON.latitude);
 }
 
 function addImgBase64(base64) {
