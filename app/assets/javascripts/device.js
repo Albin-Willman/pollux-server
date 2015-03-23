@@ -187,11 +187,16 @@
       }
     };
 
-    self.getGeoLocation = function(callback) {
+    self.getGeoLocation = function(callbackName) {
       navigator.geolocation.getCurrentPosition(function(geoLocation){
         // callback(JSON.stringify(geoLocation.coords));
-        callback(geoLocation.coords);
+        // callback(geoLocation.coords);
+        executeFunctionByName(callbackName, this, geolocation);
       });
+    };
+
+    self.deviceCallback = function(data, callbackName) {
+      executeFunctionByName(callbackName, window, data);
     };
 
     adapterCallback(self, callback);
