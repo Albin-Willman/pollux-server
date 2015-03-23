@@ -142,19 +142,26 @@
       ctx = canvas.getContext('2d');
 
       var takePicture = function(video) {
-        var id      = 'capture-from-video';
-        var overlay = '<a href="#" class="video-overlay" id="' + id + '">Capture</a>';
 
-        $(video).after(overlay);
-        $('#' + id).click(function(e) {
-          e.preventDefault();
+        overlay("Capture", "capture-from-video", function(){
           ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-          // "image/webp" works in Chrome, other browsers will fall back to image/png.
-          // executeFunctionByName(callbackName, window, canvas.toDataURL('image/webp'));
           self.deviceCallback(canvas.toDataURL('image/webp'), callbackName);
-          video.src="";
-          $("#capture-from-video").remove();
         });
+
+
+        // var id      = 'capture-from-video';
+        // var overlay = '<a href="#" class="video-overlay" id="' + id + '">Capture</a>';
+
+        // $(video).after(overlay);
+        // $('#' + id).click(function(e) {
+        //   e.preventDefault();
+        //   ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        //   // "image/webp" works in Chrome, other browsers will fall back to image/png.
+        //   // executeFunctionByName(callbackName, window, canvas.toDataURL('image/webp'));
+        //   self.deviceCallback(canvas.toDataURL('image/webp'), callbackName);
+        //   video.src="";
+        //   $("#capture-from-video").remove();
+        // });
       };
 
       self.streamVideo(function(src, stream) {
@@ -182,7 +189,7 @@
 
  
             overlay("Stop video", "stop-video");
-            
+
             //  var id      = 'stop-video';
             // var overlay = '<a href="#" class="video-overlay" id="' + id + '">Stop video</a>';
             // var video = document.querySelector('#captured-video');
