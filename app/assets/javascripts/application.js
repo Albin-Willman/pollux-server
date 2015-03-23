@@ -76,8 +76,8 @@ function showLocation(locationJSON){
     $element.append(dataPoint);
   };
 
-  setLocationDataPoint($('#longitude-location'), locationJSON.longitude);
-  setLocationDataPoint($('#latitude-location'), locationJSON.latitude);
+  setLocationDataPoint($('#longitude-location'), "Longitude: " + locationJSON.longitude);
+  setLocationDataPoint($('#latitude-location'), "Latitude: " + locationJSON.latitude);
 }
 
 function addImgBase64(base64) {
