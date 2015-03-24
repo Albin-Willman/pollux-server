@@ -91,7 +91,6 @@
     };
 
     self.getGeoLocation = function(callbackName) {
-      // PhoneGap recommends using the browser geolocation instead of the native function
       self.send('geolocation', callbackName);
     };
 
