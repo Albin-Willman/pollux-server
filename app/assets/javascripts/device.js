@@ -80,8 +80,9 @@
     };
 
     self.getGeoLocation = function(callbackName) {
-      debug('webclient, bridge: getGeolocation');
-      self.send('geolocation', callbackName);
+      // debug('webclient, bridge: getGeolocation');
+      // self.send('geolocation', callbackName);
+      (new WebDeviceAdapter).getGeolocation(callbackName);
     };
 
     self.deviceCallback = function(data, callbackName) {
@@ -116,8 +117,6 @@
         var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
         if (regex.test($(this).val().toLowerCase())) {
           if (typeof (FileReader) != "undefined") {
-            // $("#dvPreview").show();
-            // $("#dvPreview").append("<img />");
             var reader = new FileReader();
             reader.onload = function (e) {
               $("#captured-image").attr("src", e.target.result);
