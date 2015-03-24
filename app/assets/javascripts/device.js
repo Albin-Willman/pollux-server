@@ -52,7 +52,7 @@
       self.client.requestCamera(callback);
     };
 
-    self.requestImage = function(callback) {
+    self.uploadImage = function(callback) {
       self.client.requestImage(callback);
     };
 
@@ -74,7 +74,7 @@
       self.send('camera', callbackName);
     };
 
-    self.requestImage = function(callbackName) {
+    self.uploadImage = function(callbackName) {
       debug('webclient, bridge: requestImage');
       self.send('image', callbackName);
     };
