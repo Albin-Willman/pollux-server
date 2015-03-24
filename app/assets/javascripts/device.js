@@ -45,7 +45,11 @@
 
     if (typeof Android !== 'undefined') {
       debug('Running on a native Android device.');
-      device = new AndroidDeviceAdapter();
+      device = new AndroidDeviceAdapter(
+        function(){
+          document.getElementById('captured-video').style.display = "none";
+        }
+      );
     } else {
       debug('Running in webbrowser');
       device = new WebDeviceAdapter();
