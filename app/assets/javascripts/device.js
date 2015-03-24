@@ -80,9 +80,13 @@
     };
 
     self.getGeoLocation = function(callbackName) {
-      // debug('webclient, bridge: getGeolocation');
-      // self.send('geolocation', callbackName);
-      (new WebDeviceAdapter).getGeolocation(callbackName);
+      navigator.geolocation.getCurrentPosition(function(geolocation){
+        var locationJSON = {
+          longitude: geolocation.coords.longitude,
+          latitude: geolocation.coords.latitude
+        };
+        self.deviceCallback(JSON.stringify(locationJSON), callbackName);
+      });
     };
 
     self.deviceCallback = function(data, callbackName) {
@@ -213,7 +217,7 @@
     };
 
     self.deviceCallback = function(data, callbackName) {
-      executeFunctionByName(callbackName, window, data);
+    executeFunctionByName(callbackName, window, data);
     };
 
     adapterCallback(self, callback);
