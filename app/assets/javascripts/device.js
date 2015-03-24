@@ -7,6 +7,16 @@
     }
   };
 
+  var getBrowserGeolocation = function(callbackName){
+    navigator.geolocation.getCurrentPosition(function(geolocation){
+      var locationJSON = {
+        longitude: geolocation.coords.longitude,
+        latitude: geolocation.coords.latitude
+      };
+      executeFunctionByName(callbackName, window, JSON.stringify(locationJSON));
+    });
+  }
+
   var executeFunctionByName = function(functionName, context /*, args */) {
     var args       = [].slice.call(arguments).splice(2);
     var namespaces = functionName.split('.');
@@ -80,13 +90,8 @@
     };
 
     self.getGeoLocation = function(callbackName) {
-      navigator.geolocation.getCurrentPosition(function(geolocation){
-        var locationJSON = {
-          longitude: geolocation.coords.longitude,
-          latitude: geolocation.coords.latitude
-        };
-        self.deviceCallback(JSON.stringify(locationJSON), callbackName);
-      });
+      // PhoneGap recommends using the browser geolocation instead of the native function
+      getBrowserGeolocation(callbackName);
     };
 
     self.deviceCallback = function(data, callbackName) {
@@ -207,13 +212,7 @@
     };
 
     self.getGeoLocation = function(callbackName) {
-      navigator.geolocation.getCurrentPosition(function(geolocation){
-        var locationJSON = {
-          longitude: geolocation.coords.longitude,
-          latitude: geolocation.coords.latitude
-        };
-        self.deviceCallback(JSON.stringify(locationJSON), callbackName);
-      });
+      getBrowserGeolocation(callbackName);
     };
 
     self.deviceCallback = function(data, callbackName) {
