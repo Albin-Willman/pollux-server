@@ -206,7 +206,7 @@
           longitude: geolocation.coords.longitude,
           latitude: geolocation.coords.latitude
         };
-        deviceCallback(JSON.stringify(locationJSON), callbackName);
+        self.deviceCallback(JSON.stringify(locationJSON), callbackName);
       });
     };
 
