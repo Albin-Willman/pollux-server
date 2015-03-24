@@ -240,14 +240,14 @@
       }
       return self.device;
     };
-
-    if (device === undefined) {
-      self.device = new PolluxDeviceFactory();
-    } else {
-      self.device = self.setDevice(device);
-    };
-
-    return self;
+    $(document).ready(function () {  
+      if (device === undefined) {
+        self.device = new PolluxDeviceFactory();
+      } else {
+        self.device = self.setDevice(device);
+      };
+      return self;
+      });
   };
 
   window.Pollux = new Pollux();
