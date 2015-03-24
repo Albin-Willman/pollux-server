@@ -8,6 +8,7 @@
   };
 
   var getBrowserGeolocation = function(callbackName){
+    debug("pollux deviceType is: " + Pollux.device.deviceType);
     navigator.geolocation.getCurrentPosition(function(geolocation){
       var locationJSON = {
         longitude: geolocation.coords.longitude,
@@ -92,6 +93,7 @@
     self.getGeoLocation = function(callbackName) {
       // PhoneGap recommends using the browser geolocation instead of the native function
       getBrowserGeolocation(callbackName);
+      console.log("do we get here");
     };
 
     self.deviceCallback = function(data, callbackName) {
