@@ -8,7 +8,7 @@
   };
 
   var getBrowserGeolocation = function(callbackName){
-    debug("pollux deviceType is: " + Pollux.device.deviceType);
+    // debug("pollux deviceType is: " + Pollux.device.deviceType);
     navigator.geolocation.getCurrentPosition(function(geolocation){
       var locationJSON = {
         longitude: geolocation.coords.longitude,
@@ -218,7 +218,7 @@
     };
 
     self.deviceCallback = function(data, callbackName) {
-    executeFunctionByName(callbackName, window, data);
+      executeFunctionByName(callbackName, window, data);
     };
 
     adapterCallback(self, callback);
