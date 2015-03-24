@@ -7,17 +7,6 @@
     }
   };
 
-  var getBrowserGeolocation = function(callbackName){
-    // debug("pollux deviceType is: " + Pollux.device.deviceType);
-    navigator.geolocation.getCurrentPosition(function(geolocation){
-      var locationJSON = {
-        longitude: geolocation.coords.longitude,
-        latitude: geolocation.coords.latitude
-      };
-      executeFunctionByName(callbackName, window, JSON.stringify(locationJSON));
-    });
-  }
-
   var executeFunctionByName = function(functionName, context /*, args */) {
     var args       = [].slice.call(arguments).splice(2);
     var namespaces = functionName.split('.');
@@ -212,7 +201,13 @@
     };
 
     self.getGeoLocation = function(callbackName) {
-      getBrowserGeolocation(callbackName);
+      navigator.geolocation.getCurrentPosition(function(geolocation){
+        var locationJSON = {
+          longitude: geolocation.coords.longitude,
+          latitude: geolocation.coords.latitude
+        };
+        deviceCallback(JSON.stringify(locationJSON), callbackName);
+      });
     };
 
     self.deviceCallback = function(data, callbackName) {
