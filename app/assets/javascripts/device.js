@@ -34,7 +34,11 @@
 
     if (typeof Android !== 'undefined') {
       debug('Running on a native Android device.');
-      device = new AndroidDeviceAdapter();
+      device = new AndroidDeviceAdapter(
+        function(){
+          document.getElementById('captured-video').style.display = "none";
+        }
+      );
     } else {
       debug('Running in webbrowser');
       device = new WebDeviceAdapter();
@@ -236,14 +240,14 @@
       }
       return self.device;
     };
-
-    if (device === undefined) {
-      self.device = new PolluxDeviceFactory();
-    } else {
-      self.device = self.setDevice(device);
-    };
-
-    return self;
+    $(document).ready(function () {  
+      if (device === undefined) {
+        self.device = new PolluxDeviceFactory();
+      } else {
+        self.device = self.setDevice(device);
+      };
+      return self;
+      });
   };
 
   window.Pollux = new Pollux();
